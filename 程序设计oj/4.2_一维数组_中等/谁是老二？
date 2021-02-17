@@ -1,0 +1,79 @@
+问题描述 :
+
+一维数组中存储不超过100个整型数据，请找出其中第二大的元素，输出这些元素的值以及它们的下标。
+
+注意，由于元素值可能相同，因此具有最大值的元素个数可能不只一个，第二大的元素是比它们小的那些元素。
+
+输入说明 :
+
+用户可输入多组数据，每组数据由两行组成：
+
+第一行：数组元素的个数n
+
+第二行：n个数组元素，由空格分隔
+
+
+
+输出说明 :
+
+对于每组输入，输出一行，包含第二大的元素的值以及它们的下标（都是整数），整数之间以空格分隔。如果有多个下标，则下标按从小到大的顺序输出。每行的开头与结尾无多余空格。
+
+每组输出占一行。
+
+如果不存在第二大的元素，则输出"none"（不包含引号）
+
+
+
+输入范例 :
+
+3
+2 5 4
+10
+1 3 5 2 4 3 7 5 7 7
+5
+2 2 2 2 2
+
+输出范例 :
+
+4 2
+5 2 7
+none
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+    int n,b,a[100],ma,sum=0,flag=0;
+    while(cin>>n)
+    {
+        flag=0;
+        for(int i=0; i<n; i++){cin>>b;a[i]=b;}
+        ma=a[0];
+        for(int i=1; i<n; i++)
+        {
+            if(a[i]>ma){ma=a[i];flag=1;}
+        }
+        if(flag==0){cout<<"none"<<endl;continue;}
+        for(int i=0; i<n; i++)
+        {
+            if(a[i]==ma)a[i]=-100000;
+        }
+        ma=a[0];
+        for(int i=0; i<n; i++)
+        {
+            if(a[i]>ma)ma=a[i];
+        }
+        cout<<ma;
+        for (int i=0; i<n; i++)
+        {
+            if(a[i]==ma)cout<<' '<<i;
+        }
+            cout<<endl;
+    sum=0;
+    }
+
+}

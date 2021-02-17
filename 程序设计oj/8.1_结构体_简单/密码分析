@@ -1,0 +1,89 @@
+问题描述 :
+
+ 密码分析学中常常需要统计字符出现的频度。给定若干行短文，要求按字符出现的频度由高到低输出，当两个字符出现的频度相同时，按字符大小的顺序输出。
+
+注意：只需要统计英文字母的频度，非英文字母一律忽略。
+
+
+
+
+
+输入说明 :
+
+ 输入由多组数据组成。每组数据由一行长度不超过100的字符串组成，不区分字母大小写，如A与a看作同一个字母。
+
+输出说明 :
+
+ 对每组输入数据都有若干行输出，每行有两个输出数据，第一个数据为某个大写字母，第二个数据为该字母出现的频度，两个数据之间有一个空格。输出顺序按字母出现的频度由高到低输出，当两个字母的频度相同时，按字母大小的顺序输出。两组输出之间有一行空行。
+
+输入范例 :
+
+Do what you say, say what you do.
+This is a test.
+Count me 1 2 3 4 5.
+输出范例 :
+
+A 4
+O 4
+Y 4
+D 2
+H 2
+S 2
+T 2
+U 2
+W 2
+
+S 3
+T 3
+I 2
+A 1
+E 1
+H 1
+
+C 1
+E 1
+M 1
+N 1
+O 1
+T 1
+U 1
+
+#include <bits/stdc++.h>
+using namespace std;
+    struct let{
+        char c;
+        int sum;
+    };
+bool cmp(let a,let b)
+{
+    if(a.sum != b.sum) return a.sum > b.sum;
+    return a.c < b.c;
+}
+int main()
+{
+
+    string temp;
+    while(getline(cin,temp)){
+        for(auto x=temp.begin();x!=temp.end();x++)if(*x>='a' && *x<='z') *x=toupper(*x);
+        multiset<char> ms;
+        set<char> s;
+        for(auto x=temp.begin();x!=temp.end();x++)if(*x>='A' && *x<='Z'){
+            ms.insert(*x);
+            s.insert(*x);
+        }
+        vector<let> v;
+        for(auto x:s){
+            let t;
+            t.c=x;
+            t.sum=ms.count(x);
+            v.push_back(t);
+        }
+        sort(v.begin(),v.end(),cmp);
+        for(auto x:v)
+        {
+            cout<<x.c<<' '<<x.sum<<endl;
+        }
+        cout<<endl;
+    }
+    return 0;
+}

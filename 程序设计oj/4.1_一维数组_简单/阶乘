@@ -1,0 +1,43 @@
+问题描述 :
+
+请跟据一个整数N（1≤N≤12），求出N的阶乘的值。
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据占一行，其中只包含一个整数N（1≤N≤12）。在行首和行尾没有多余的空格。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出设备（通常为启动该程序的文本终端，例如你在Windows中启动该程序所用的命令行终端）依次输出一组对应的答案。每组答案占一行，其中只包含一个整数，即N的阶乘的值。在行首和行尾不要输出多余的空格；在所有数据前后不要输出多余的空行；两组数据之间也不要输出多余的空行。
+
+输入范例 :
+
+2
+4
+
+输出范例 :
+
+2
+24
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+    double n,sum=1;
+    while(cin>>n)
+    {
+    for(int i=1;i<=n;i++)
+    {
+        sum*=i;
+    };
+    cout<<setprecision(12)<<sum<<endl;
+    sum=1;
+    };
+    return 0;
+}

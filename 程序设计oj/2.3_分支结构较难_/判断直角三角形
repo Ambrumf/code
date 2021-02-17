@@ -1,0 +1,65 @@
+问题描述 :
+
+我们知道，如果一个三角形三边长为 3, 4, 5，则它是一个直角三角形。
+
+请你判断输入的三角形是否是直角三角形。
+
+输入说明 :
+
+输入数据包含多组测试数据，最后以一行0 0 0结束输入。
+
+每组测试数据包含三个正整数，表示三角形的三边长度，它们均小于 30,000
+
+
+
+输出说明 :
+
+如果是直角三角形，则输出"right"，否则输出 "wrong"
+
+输入范例 :
+
+3 4 5
+5 12 13	
+7 24 25	
+8 15 17
+9 40 41	
+11 60 61	
+13000 12000 5000
+13001 12000 5000
+12999 12000 5000
+0 0 0
+输出范例 :
+
+right
+right
+right
+right
+right
+right
+right
+wrong
+wrong
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int a,b,c,x;
+
+    while(cin>>a>>b>>c)
+    {
+    if(a==0&&b==0&&c==0) break;
+    if(a>b);
+        else x=a,a=b,b=x;
+    if(b>c);
+        else if(a>c) x=b,b=c,c=x;
+             else x=a,a=c,c=b,b=x;
+    if(a*a==b*b+c*c) cout<<"right"<<endl;
+    else cout<<"wrong"<<endl;
+
+    }
+    return 0;
+}

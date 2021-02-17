@@ -1,0 +1,53 @@
+根据学生的成绩给予对应的等第，对应的关系如下表所示。
+
+成绩            等第
+
+90－100     A
+
+80－89       B
+
+60－79       C
+
+60以下       D
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据占一行，每行输入一个整数s(0≤s≤100)作为学生的成绩，在行首和行尾没有多余的空格。输入-1表示结束。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出设备（通常为启动该程序的文本终端，例如你在Windows中启动该程序所用的命令行终端）依次输出从标准输入设备中读入的每一组测试数据对应的结果，所有数据前后没有多余的空行，两组数据之间也没有多余的空行。每组输出数据由一行组成，每行由一个数组成，在行首和行尾没有多余的空格。
+
+输入范例 :
+
+60
+20
+-1
+输出范例 :
+
+C
+D
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int grade;
+    while(cin>>grade)
+    {
+        if(grade==-1) break;
+        switch(grade/10)
+        {
+            case 10:;
+            case 9:cout<<'A'<<endl;break;
+            case 8:cout<<'B'<<endl;break;
+            case 7:;
+            case 6:cout<<'C'<<endl;break;
+            default :cout<<'D'<<endl;break;
+        }
+    }
+    return 0;
+}

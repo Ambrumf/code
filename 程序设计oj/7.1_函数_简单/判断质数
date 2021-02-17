@@ -1,0 +1,101 @@
+问题描述 :
+
+编写一个程序，判断给出的正整数是否是质数。
+
+请定义函数进行判断。
+
+输入说明 :
+
+你的数据需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据由一行组成，每行由一个正整数N组成，N小于等于10000。在行首和行尾没有多余的空格。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出文件（通常为启动该程序的文本终端，例如你在Windows中启动该程序所用的命令行终端）依次输出一组对应的答案。所有数据前后不要输出多余的空行，两组数据之间也不要输出多余的空行。每组输出数据由一行组成，如果这一行输出1，则说明输入数据是质数，如果这一行输出0，则说明输入数据不是质数。在行首和行尾不要输出多余的空格。
+
+输入范例 :
+
+2
+11
+
+输出范例 :
+
+1
+1
+#include <bits/stdc++.h>
+using namespace std;
+
+int getfac(int n)
+{
+    if (n==1)return 0;
+    for (int i=2;i<n;i++)if(n%i==0)return 0;
+    return 1;
+}
+int main ()
+{
+    int x;
+    while(cin>>x)cout<<getfac(x)<<endl;
+    return 0;
+}
+问题描述 :
+
+编写程序输出一张摄氏-华氏温度转换表，摄氏温度的取值区间是从键盘输入，温度间隔10 ℃ 。要求定义和调用函数ctof(c)，将温度转换为华氏温度F，计算公式：F=32+c*9/5。 
+
+注意：请复制下面的main函数用于测试ctof函数。
+
+int main(){
+
+      int i,start,end;
+
+      cin>>start>>end;
+
+      for(int i=start;i<=end;i+=10){
+
+             cout<<i<<"C="<<ctof(i)<<endl;
+
+      }
+
+      return 0;
+
+}
+
+输入说明 :
+
+转换表的起止温度。
+
+输出说明 :
+
+转换表
+
+输入范例 :
+
+10 20
+输出范例 :
+
+10C=50F
+20C=68F
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int ctof(int i)
+{
+    int F;
+    F=32+i*9/5;
+    return F;
+}
+int main()
+{
+
+      int i,start,end;
+
+      cin>>start>>end;
+
+      for(int i=start;i<=end;i+=10){
+
+             cout<<i<<"C="<<ctof(i)<<'F'<<endl;
+
+      }
+
+      return 0;
+
+}

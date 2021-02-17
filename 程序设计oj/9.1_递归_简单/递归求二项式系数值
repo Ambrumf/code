@@ -1,0 +1,41 @@
+问题描述 :
+
+根据以下公式：
+
+
+
+
+
+
+
+输入说明 :
+
+输入两个整数k和n，输入的数据保证其结果在int表示时不会溢出。
+
+
+
+输出说明 :
+
+输出运算结果
+
+输入范例 :
+
+3 10
+输出范例 :
+
+120
+#include <bits/stdc++.h>
+using namespace std;
+long long f(long long n,long long k)
+{
+    if(k==0 || n==k) return 1;
+    else return f(n-1,k)+f(n-1,k-1);
+}
+int main()
+{
+    long long k,n;
+    cin>>k>>n;
+    long long ans=f(n,k);
+    cout<<ans<<endl;
+    return 0;
+}

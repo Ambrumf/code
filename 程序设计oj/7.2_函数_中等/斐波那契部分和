@@ -1,0 +1,51 @@
+问题描述 :
+
+计算闭区间[m,n](即大于等于m且小于等于n)内的所有斐波那契数的和。
+
+要求定义并调用函数fib(k)，它的功能是返回第k项Fibonacci数。
+
+例如，fib(7)返回13
+
+
+
+Fibonacci={1,1,2,3,5,8,13,................}
+
+其中:an=an-1+an-2
+
+如果区间为[2,5]，则可知，数列中2,3,5处于该区间，因此，和为10。
+
+输入说明 :
+
+两个数m和n
+
+输出说明 :
+
+所有属于闭区间[m,n]即大于等于m,小于等于n的斐波那契数的和。
+
+输入范例 :
+
+2 5
+输出范例 :
+
+10
+#include <bits/stdc++.h>
+using namespace std;
+double fun(double i)
+{
+    if(i==1 || i==2 )return 1;
+    return (fun(i-1)+fun(i-2));
+}
+int main()
+{
+    int a1,a2,i=1;
+    double sum=0;
+    cin>>a1>>a2;
+    while(1)
+    {
+        if(a1<= fun(i) && fun(i)<=a2)sum+=fun(i);
+        if(fun(i)>=a2)break;
+        i++;
+    }
+    cout<<sum;
+    return 0;
+}

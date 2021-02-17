@@ -1,0 +1,92 @@
+问题描述 :
+
+倾国倾城的大家闺秀潘小姐要选夫婿啦！武林中各门各派，武林外各大户人家，闻讯纷纷前来，强势围观。前来参与竞选的男生藏龙卧虎，高手云集，才子遍布，帅哥纷纭，更不乏富二代，官二代，可谓声势空前。
+
+每个人参与竞选的帅哥除了进行一段激情洋溢的求婚演讲以外，还要报上自己姓名、身高和体重，以及个人简历。最后再进行文武选拔，最后夺魁者方能得到潘小姐的芳心。
+
+
+
+潘小姐不爱名利，只看人，第一关就是身高和体重要合格，即必须在其要求的范围内，否则直接排除在外，不允许参加下一轮的选拔。
+
+潘小姐把首轮根据身高体重进行选拔的任务交给了你，请输出晋级第二轮的选手信息。
+
+
+
+
+
+输入说明 :
+
+潘小姐给你了所有报名男生的信息。
+
+输入数据的第一行是一个正整数N(0 < N < 1000)。
+
+然后N行数据，每行包含三部分，用空格隔开。
+
+第一部分是报名者的姓名name(长度小于20的字符串)，然后是整数身高h（0 < h < 300），第三部分是整数体重w (0 < w < 200)。
+
+
+
+最后一行是四个整数a,b,c,d.表示身高的合格范围是[a,b],体重的合格范围是[c,d]（0 < a < b < 300, 0 < c < d < 200）。
+
+输出说明 :
+
+你需要把合格的男生信息按照身高从矮到高输出，格式跟输入一样，也是每行三个信息，中间用一个空格隔开，如果身高相同则按体重从轻到重输出，若没有合格人选则输出“No”（不包括引号）。
+
+输入范例 :
+
+8
+wudalang 70 40
+ximenqing 180 70
+likui 160 150
+yanqing 175 69
+luzhishen 180 100
+wusong 180 75
+xiaoquan 30 20
+sunerniang 169 60
+175 190 60 90
+输出范例 :
+
+yanqing 175 69
+ximenqing 180 70
+wusong 180 75
+
+#include <bits/stdc++.h>
+using namespace std;
+struct man
+{
+    string name;
+    int h;
+    int w;
+};
+bool cmp(man a,man b)
+{
+    if(a.h!=b.h)return a.h<b.h;
+    return a.w<b.w;
+}
+int main()
+{
+    vector<man> v,ans;
+    int n;
+    scanf("%d",&n);
+    while(n--)
+    {
+        string a;
+        int b,c;
+        cin>>a>>b>>c;
+        man tmp={a,b,c};
+        v.push_back(tmp);
+    }
+    int a,b,c,d;
+    scanf("%d%d%d%d",&a,&b,&c,&d);
+    for(int i=0;i<v.size();i++)
+    {
+        if(a<=v[i].h &&v[i].h<=b && c<=v[i].w && v[i].w<=d)ans.push_back(v[i]);
+    }
+    if(ans.empty())cout<<"No"<<endl;
+    else {
+        sort(ans.begin(),ans.end(),cmp);
+        for(auto x:ans)cout<<x.name<<' '<<x.h<<' '<<x.w<<endl;
+    }
+    
+    return 0;
+}

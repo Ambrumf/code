@@ -1,0 +1,86 @@
+问题描述 :
+
+回文数是指从左向右念和从右向左念都一样的数。如12321就是一个典型的回文数。 给定一个进制B(2=<B<=20进制)，输出所有的大于等于1小于等于300且该数的平方用B进制表示时是回文数的数(该数本身不要求是回文数)。
+
+输入说明 :
+
+共一行，一个单独的整数B(B用十进制表示，比如18)。
+
+输出说明 :
+
+每行两个数字，第二个数是第一个数的平方，且第二个数是回文数。
+
+注意：输出时，这两个数都应该以B进制表示。
+
+在输出时，数字10到20分别以A到K代替。
+
+输入范例 :
+
+20
+输出范例 :
+
+1 1
+2 4
+3 9
+4 G
+11 121
+22 484
+25 515
+33 9I9
+DD 9669
+
+#include <bits/stdc++.h>
+# include <stdio.h>
+
+using namespace std;
+void convertrev(char c[])
+{
+    int n=strlen(c);
+    char *i1=c+n-1;
+    while(n--)cout<<*i1--;
+}
+void covch(int x,int B,char c[])//store reverced char in c[]
+{
+    int temp,j=0;
+    do
+    {
+        if(x%B<10)c[j]=x%B+48;
+        else c[j]=x%B+55;
+        x/=B;
+        j++;
+    }
+    while(x);
+    c[j]=0;
+}
+
+bool rev(char c[])// judge reverse
+{
+    int n=strlen(c);
+
+    char b[100];
+    for (int i=0;i<n;i++)b[i]=c[n-1-i];
+    b[n]=0;
+    if (strcmp(c,b)==0) return true;
+    else return false;
+}
+
+int main()
+{
+    int B;
+    char c[100],c2[100];
+    cin>>B;
+    for (int i=1; i<301; i++)
+    {
+        covch(i*i,B,c);// convert num to char
+        if (rev(c)==1)
+        {
+            covch(i,B,c2);
+            convertrev(c2);
+            cout<<' ';
+            convertrev(c);
+            cout<<endl;
+        }
+    }
+    return 0;
+
+}

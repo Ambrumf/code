@@ -1,0 +1,92 @@
+问题描述 :
+
+A和B是两个集合，A-B求的是两个集合的差，就是做集合的减法运算。（当然，大家都知道集合的定义，就是同一个集合中不会有两个相同的元素，这里还是提醒大家一下）呵呵，很简单吧？
+
+
+
+输入说明 :
+
+输入数据包含T个测试实例。
+
+首先输入数字T，然后输入T组测试数据，每组输入数据占1行,每行数据的开始是2个整数n(0<=n<=100)和m(0<=m<=100),分别表示集合A和集合B的元素个数，然后紧跟着n+m个元素，前面n个元素属于集合A，其余的属于集合B. 每个元素为不超出int范围的整数,元素之间由一个空格隔开. 
+
+
+
+输出说明 :
+
+针对每组数据输出一行数据,表示A-B的结果,如果结果为空集合，则输出“NULL”,否则从小到大输出结果,为了简化问题，每个元素后面跟一个空格.
+
+
+
+输入范例 :
+
+2
+3 3 1 2 3 1 4 7
+3 7 2 5 8 2 3 4 5 6 7 8
+输出范例 :
+
+2 3 
+NULL
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+    int a[100],b[100],na,nb,T,t,tmp,flag;
+    cin>>T;
+    for(int i=0; i<T; i++)
+    {
+        flag=0;
+        cin>>na>>nb;
+        for(int k=0; k<na; k++)
+        {
+            cin>>t;
+            a[k]=t;
+        }
+        for(int j=0; j<nb; j++)
+        {
+            cin>>t;
+            b[j]=t;
+        }
+        for(int j=0; j<nb; j++)
+        {
+            for(int k=0; k<na; k++)
+            {
+                if(a[k]==b[j])
+                {
+                    a[k]=0;
+                }
+            }
+        }
+        for(int i=0; i<na; i++)if(a[i]!=0)flag=1;
+        if(flag==0)
+        {
+            cout<<"NULL"<<endl;
+            break;
+        }
+        else
+        {
+            for (int j=0; j<na-1; j++)
+                for(int k=0; k<na-1-j; k++)
+                {
+                    if(a[k]>a[k+1])
+                    {
+                        tmp=a[k];
+                        a[k]=a[k+1];
+                        a[k+1]=tmp;
+                    }
+                }
+            for(int j=0; j<na; j++)
+            {
+                if(a[j]!=0)cout<<a[j]<<' ';
+            }
+            cout<<endl;
+        }
+    }
+
+    return 0;
+}

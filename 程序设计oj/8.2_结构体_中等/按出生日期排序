@@ -1,0 +1,67 @@
+问题描述 :
+
+小明希望将自己的通讯录按好友的生日顺序排序，这样查看起来方便多了，也避免错过好友的生日。
+
+为了小明的美好愿望，你帮帮他吧。小明的好友信息包含姓名、出生日期。其中出生日期又包含年、月、日三部分信息。
+
+输入n个好友的信息，按生日的月份和日期升序输出所有好友信息。
+
+
+
+输入说明 :
+
+首先输入一个整数n(1<=n<=10)，表示好友人数，
+
+然后输入n行，每行包含一个好友的信息：姓名（不超过10位），以及三个整数，分别表示出生日期的年月日。
+
+各数据之间以空格分隔，姓名中不包含空格。
+
+输出说明 :
+
+按过生日的先后（月份和日期）输出所有好友的姓名和出生日期（没有两个好友同一天过生日），用空格隔开，出生日期的输出格式见输出样例。
+
+输入范例 :
+
+4
+Zhangling 1985 2 4
+Wangliang 1985 12 11
+Fangfang 1983  6 1
+lingling 2000 3 4
+输出范例 :
+
+Zhangling 1985-02-04
+lingling 2000-03-04
+Fangfang 1983-06-01
+Wangliang 1985-12-11
+
+#include <bits/stdc++.h>
+using namespace std;
+    struct pep{
+        string name;
+        int year;
+        int month;
+        int date;
+    };
+bool cmp(pep a, pep b){
+    if(a.month!=b.month)return a.month<b.month;
+    return a.date<b.date;
+}
+int main()
+{
+    int T;
+    cin>>T;
+    vector<pep> v;
+    while(T--){
+        string t;
+        int t1,t2,t3;
+        cin>>t;
+        scanf("%d%d%d",&t1,&t2,&t3);
+        pep temp={t,t1,t2,t3};
+        v.push_back(temp);
+    }
+    sort(v.begin(),v.end(),cmp);
+    for(auto x:v){
+        cout<<x.name<<' '<<setfill('0')<<x.year<<'-'<<setw(2)<<x.month<<'-'<<setw(2)<<x.date<<endl;
+    }
+    return 0;
+}

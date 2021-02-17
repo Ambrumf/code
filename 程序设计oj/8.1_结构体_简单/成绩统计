@@ -1,0 +1,131 @@
+问题描述 :
+
+每次通过键盘输入5位学生如下表所示的数据，然后计算并输出每位学生的平均成绩，再输出数学成绩最高的学生的姓名及成绩。
+
+姓名
+
+数学成绩
+
+政治成绩
+
+John
+
+88
+
+89
+
+Jack
+
+90
+
+86
+
+Marry
+
+76
+
+80
+
+Kite
+
+55
+
+58
+
+Jane
+
+56
+
+68
+
+
+
+输入说明 :
+
+从键盘输入5位学生如下表所示的数据
+
+姓名
+
+数学成绩
+
+政治成绩
+
+John
+
+88
+
+89
+
+Jack
+
+90
+
+86
+
+Marry
+
+76
+
+80
+
+Kite
+
+55
+
+58
+
+Jane
+
+56
+
+68
+
+输入信息包括5行，每行包括姓名、数学成绩、政治成绩。
+输出说明 :
+
+首先输出5行，每行包括学生的姓名和平均成绩，平均成绩为数学成绩加政治成绩整除2（即丢掉小数部分）。
+
+第6行为数学成绩最高的学生的姓名及成绩。
+
+输入范例 :
+
+John 88 89
+Jack 80 86
+Marry 76 80
+Kite 55 58
+Jane 56 68
+
+输出范例 :
+
+John 88
+Jack 83
+Marry 78
+Kite 56
+Jane 62
+John 88 89
+#include<bits/stdc++.h>
+using namespace std;
+    struct stu {
+        string name;
+        int math;
+        int pol;
+        int ave;};
+bool cmp (stu a,stu b)
+{
+    return a.math > b.math;
+}
+int main()
+{
+    vector<stu> v;
+    for(int i=0;i<5;i++){
+        stu temp;
+        cin>>temp.name>>temp.math>>temp.pol;
+        temp.ave=(temp.math+temp.pol)/2;
+        v.push_back(temp);
+    }
+    for(auto it=v.begin();it!=v.end();it++)cout<<it->name<<' '<<it->ave<<endl;
+    sort(v.begin(),v.end(),cmp);
+    cout<<v.begin()->name<<' '<<v.begin()->math<<' '<<v.begin()->pol;
+    return 0;
+
+}

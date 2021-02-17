@@ -1,0 +1,38 @@
+问题描述 :
+
+现定义了一个递归函数fac求n！ n！可以用以下递归方法表示： 1）当n＝0时，fac (n) = 1 2）当n≥1时，fac (n) = n*fac(n-1) 要求用此方法求出n！
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据由一行组成，输入数据为整型数n，0≤n≤20。两组数据之间没有多余的空行。在行首和行尾没有多余的空格。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出设备（通常为启动该程序的终端）依次输出一组对应的答案。每组输出数据由一行组成，每行一个整数，代表n的阶乘。所有数据前后没有多余的空格，两组数据之间也没有多余的空行。
+
+输入范例 :
+
+2
+3
+
+输出范例 :
+
+2
+6
+#include <bits/stdc++.h>
+using namespace std;
+int sum=0;
+long long fac(long long n)
+{
+    if(n==0) return 1;
+    else return n*fac(n-1);
+}
+int main()
+{
+    long long N;
+    while(cin>>N){
+    long long ans=fac(N);
+    cout<<ans<<endl;
+    }
+    return 0;
+}

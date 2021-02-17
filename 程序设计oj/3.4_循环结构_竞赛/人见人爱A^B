@@ -1,0 +1,61 @@
+问题描述 :
+
+求A^B的最后三位数表示的整数。说明：A^B的含义是“A的B次方”
+
+输入说明 :
+
+输入数据包含T个测试实例，每个实例占一行，由两个正整数A和B组成（1<=A,B<=10000）。
+
+输出说明 :
+
+对于每个测试实例，请输出A^B的最后三位表示的整数，每个输出占一行。
+
+输入范例 :
+
+10
+47 653
+156 622
+499 886
+839 441
+296 922
+581 270
+139 197
+765 333
+702 523
+230 836
+输出范例 :
+
+927
+936
+1
+439
+16
+601
+979
+125
+8
+0
+
+#include<iostream>
+#include<cstdio>
+#include<iomanip>
+#include<cmath>
+#include<locale.h>
+using namespace std;
+
+int main ()
+{
+    int T,a,b,a0;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        cin>>a>>b;
+        a0=a;
+        for(int j=0;j<b-1;j++)
+        {
+            a=a*a0;
+            a%=1000;
+        }
+        cout<<a<<endl;
+    }
+}

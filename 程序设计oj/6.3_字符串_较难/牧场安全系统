@@ -1,0 +1,107 @@
+问题描述 :
+
+明明是一家养牛场的老板，随着养牛场的规模扩大，牛的数量变得越来越多。因此，管理也就越来越难，还时常发生一些事故，比如：一些牛会走失，一些牛会因为疏忽照顾而生长不佳等等，这些都给明明造成了损失。于是，明明决定给养牛场安装一套现代化的生产管理系统，用科学的方法来管理养牛场，在这套安全系统中，需要为每头牛编一个号码，这个号码是唯一的，用来标识每一头牛。这样明明在管理时，就不会疏忽任意一头牛，也不会使牛再次走失。但是在给每头牛编号的时候，明明遇到了困难，由于系统的原因，系统对每头牛的编号有一定的限制，这个编号必须有L个小写字母组成，这些小写字母必须在固定的几个字母中选择，并且在这个编号中至少要有一个元音('a', 'e', 'i', 'o', 或者 'u')，至少有两个辅音(除去元音以外的音节), 并且字母按字母表顺序排列(例如，'abc'是有效的，而'bac'不是有效的)。 例如：假设编号由5个小写字母组成，且这些小写字母只能为a、b、c、d、e、f，这样构成的可能的编号就有以下6种： bcdef acdef abdef abcef abcdf abcde 明明觉得这样编号的方法非常麻烦，仅仅靠手工排列是很难完成的，出错的可能性很大，这时，明明想起了你，你是一位程序设计专家，你能否帮明明写一个程序，帮助他按照编号的规则，由程序生成所有的有效编号，供明明使用。 明明的问题可以归结为：给你一个有效编号的长度L，和C个可用的小写字母，按照编码规则生成所有的有效编号。
+
+输入说明 :
+
+你写的程序要求从标准输入设备中读入测试数据作为你所写程序的输入数据。标准输入设备中有多组测试数据，每组测试数据有二行，第一行为两个整数L(3≤L≤15)和C(3≤C≤26)，L表示编号的长度，C表示可以选择的小写字母的数量，L和C用一个空格隔开。第二行有C个两两不相同的小写字母，相互以一个空格隔开。每组测试数据与其后一组测试数据之间没有任何空行，第一组测试数据前面以及最后一组测试数据后面也都没有任何空行。
+
+输出说明 :
+
+对于每一组测试数据，你写的程序要求计算出一组相应的运算结果，并将这一组运算结果作为你所写程序的输出数据依次写入到标准输出设备中。每组运算结果分为两个部分，第一部分为所有生成的有效编号，每行一个，按字母表逆序顺序输出，第二部分为一个整数，表示总共有多少个有效编码。 每组运算结果的行首和行尾都没有任何空格，每组运算结果与其后一组运算结果之间有一个空行，最后一组运算结果后面没有空行。 注：通常，显示屏为标准输出设备。
+
+输入范例 :
+
+3 3
+a b c
+5 6
+a b c d e f
+输出范例 :
+
+abc
+1
+
+bcdef
+acdef
+abdef
+abcef
+abcdf
+abcde
+6
+#include <bits/stdc++.h>
+using namespace std;
+map<char, int> m;
+vector<string> ans;
+void find_combination(string *c, int num, string str)
+{
+    if (num == 0)
+    {
+        int a = 0, b = 0;
+        for (auto x : str)
+        {
+            if (m[x] == 1)
+                a++;
+            if (m[x] == 0)
+                b++;
+        }
+        if (a >= 1 && b >= 2)
+            ans.push_back(str);
+        return;
+    }
+    if (c[0] == "0")
+        return;
+    str += c[0];
+    find_combination(c + 1, num - 1, str);
+    str.erase(str.end() - 1);
+    find_combination(c + 1, num, str);
+}
+int main()
+{
+    m.insert(make_pair('a', 1));
+    m.insert(make_pair('e', 1));
+    m.insert(make_pair('i', 1));
+    m.insert(make_pair('o', 1));
+    m.insert(make_pair('u', 1));
+    m.insert(make_pair('b', 0));
+    m.insert(make_pair('c', 0));
+    m.insert(make_pair('d', 0));
+    m.insert(make_pair('f', 0));
+    m.insert(make_pair('g', 0));
+    m.insert(make_pair('h', 0));
+    m.insert(make_pair('j', 0));
+    m.insert(make_pair('k', 0));
+    m.insert(make_pair('l', 0));
+    m.insert(make_pair('k', 0));
+    m.insert(make_pair('n', 0));
+    m.insert(make_pair('p', 0));
+    m.insert(make_pair('q', 0));
+    m.insert(make_pair('r', 0));
+    m.insert(make_pair('s', 0));
+    m.insert(make_pair('t', 0));
+    m.insert(make_pair('v', 0));
+    m.insert(make_pair('w', 0));
+    m.insert(make_pair('x', 0));
+    m.insert(make_pair('y', 0));
+    m.insert(make_pair('z', 0));
+    int n, M;
+    while(scanf("%d%d",&n,&M)!=EOF){
+        ans.clear();
+        string *c = new string[M + 1];
+        for (int i = 0; i < M; i++)
+        {
+            string t;
+            cin >> t;
+            c[i] = t;
+        }
+        c[M] = "0";
+        string str;
+        find_combination(c, n, str);
+        sort(ans.rbegin(), ans.rend());
+        for (auto x : ans)
+            cout << x << endl;
+        cout << ans.size() << endl
+             << endl;
+        delete[] c;
+    }
+    return 0;
+}

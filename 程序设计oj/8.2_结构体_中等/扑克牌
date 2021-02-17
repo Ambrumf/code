@@ -1,0 +1,129 @@
+问题描述 :
+
+明明和他的三位同学在玩一种非常有趣的扑克牌游戏。
+
+在这个游戏中，一副牌的大小怪被除去，然后把剩下的52张牌随机发给4个人，这样每个人的手中就有13张牌。
+
+接下来的任务就是每个人把自己手中的牌按一定的顺序整理好。理牌的顺序如下：
+
+首先按牌的大小整理，牌的大小顺序为：A，K，Q，J，T(10)，9，…，2，如果牌的大小相等，则按如下的花色顺序整理：黑桃（S），红心（H），方块（D），草花（C）。
+
+例如有一个人手中拿到的牌如下：
+
+ST CQ S8 D8 HQ D2 H3 HK H9 H2 HT SK CK
+
+经过整理后的牌的顺序会变为：
+
+SK HK CK HQ CQ ST HT H9 S8 D8 H3 H2 D2
+
+其中SK、HK、CK这三张牌的大小相同，都是K，于是根据花色的顺序整理，先是S，再是H，最后是C，所以顺序为SK、HK、CK。
+
+当每个人把自己手中的牌整理完后，他们就开始玩非常有趣的扑克游戏了。但是玩着玩着，他们发现了一个问题：理牌的时间太长，这使得他们玩牌的兴致被大大减弱了。于是他们来求助于你，能否帮他们写一个理牌程序，帮助他们理牌，这样他们就可以不必把大量的时间花在理牌上面，而尽情享受玩牌的乐趣了。
+
+明明的问题可以归结为：给你每人手中顺序打乱的13张牌，一共有4套，然后通过题目中描述的理牌顺序，理好这4套牌。
+
+输入说明 :
+
+你写的程序要求从标准输入设备中读入测试数据作为你所写程序的输入数据。标准输入设备中有多组测试数据，测试数据的第一行有一个整数n，表示有几副牌需要整理，接着每副牌分四行输入，每行13张牌；每张牌用两个字母表示，首字母表示花色，尾字母表示点数，两张牌之间有一个空格。每副牌与每副牌之间没有任何空行，第一副牌前面以及最后一副牌后面也都没有任何空行。 注：通常，键盘为标准输入设备。
+
+输出说明 :
+
+对于每一副牌，你写的程序要求计算出一组相应的运算结果，并将每组运算结果作为你所写程序的输出数据依次写入到标准输出设备中。对于每组输入的牌，输出排序后的牌，分四行输出，输出样式与输入相同。每组运算结果与其后一组运算结果之间有一个空行，第一组运算结果前面及最后一组运算结果后面没有空行。 注：通常，显示屏为标准输出设备。
+
+输入范例 :
+
+2
+ST CQ S8 D8 HQ D2 H3 HK H9 H2 HT SK CK
+D9 HJ H7 DJ S2 SQ DT C2 H4 H5 DA D4 D5
+D6 S4 S9 S5 S7 SJ H8 D3 C8 S3 C4 S6 C9
+SA C7 HA H6 DK CJ D7 CA C5 CT DQ C6 C3
+D6 S4 S9 S5 S7 SJ H8 D3 C8 S3 C4 S6 C9
+D9 HJ H7 DJ S2 SQ DT C2 H4 H5 DA D4 D5
+ST CQ S8 D8 HQ D2 H3 HK H9 H2 HT SK CK
+SA C7 HA H6 DK CJ D7 CA C5 CT DQ C6 C3
+输出范例 :
+
+SK HK CK HQ CQ ST HT H9 S8 D8 H3 H2 D2
+DA SQ HJ DJ DT D9 H7 H5 D5 H4 D4 S2 C2
+SJ S9 C9 H8 C8 S7 S6 D6 S5 S4 C4 S3 D3
+SA HA CA DK DQ CJ CT D7 C7 H6 C6 C5 C3
+
+SJ S9 C9 H8 C8 S7 S6 D6 S5 S4 C4 S3 D3
+DA SQ HJ DJ DT D9 H7 H5 D5 H4 D4 S2 C2
+SK HK CK HQ CQ ST HT H9 S8 D8 H3 H2 D2
+SA HA CA DK DQ CJ CT D7 C7 H6 C6 C5 C3
+
+#include <bits/stdc++.h>
+using namespace std;
+struct card
+{
+    char number;
+    int num;
+    char color;
+    int crank;
+    card(char b, char a)
+    {
+        number = a;
+        color = b;
+        if (48 <= a && 57 >= a)
+            num = number - 48;
+        else if (number == 'T')
+            num = 10;
+        else if (number == 'J')
+            num = 11;
+        else if (number == 'Q')
+            num = 12;
+        else if (number == 'K')
+            num = 13;
+        else if (number == 'A')
+            num = 14;
+        if (b == 'S')
+            crank = 4;
+        else if (b == 'H')
+            crank = 3;
+        else if (b == 'D')
+            crank = 2;
+        else if (b == 'C')
+            crank = 1;
+    }
+};
+bool cmp(card a, card b)
+{
+    if (a.num != b.num)
+        return a.num > b.num;
+    return a.crank > b.crank;
+}
+int main()
+{
+
+    int n;
+    scanf("%d", &n);
+    cin.get();
+    while (n--)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            int t = 13;
+            vector<card> vc;
+            while (t--)
+            {
+                char a, b;
+                cin.get(a);
+                cin.get(b);
+                cin.get();
+                card tmp(a, b);
+                vc.push_back(tmp);
+            }
+            sort(vc.begin(), vc.end(), cmp);
+            for (int i = 0; i < vc.size(); i++)
+            {
+                if (i > 0)
+                    cout << ' ';
+                cout << vc[i].color << vc[i].number;
+            }
+            cout << endl;
+        }
+        cout<<endl;
+    }
+    return 0;
+}

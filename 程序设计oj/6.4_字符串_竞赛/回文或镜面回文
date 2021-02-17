@@ -1,0 +1,126 @@
+问题描述 :
+
+给出字符串，判断其是否是回文或镜面回文。
+
+给定一个由数字或字母组成的字符串，如果该字符串正读、反读都一样，则该字符串被称作回文字符串。例如，"ABCDEDCBA"就是回文字符串。
+
+给定一个由数字或字母组成的字符串，将字符串中每个字符转换为对应的镜面字符（有镜面字符）或保持不变（无对应镜面字符），如果转换后的字符串反读的结果与字符串转换前正读的结果相同，则该字符串被称作镜面字符串。例如，"3AIAE"就是镜面字符串。
+
+如果一个字符串既是回文字符串又是镜面字符串，则称该字符串为镜面回文字符串。例如，"ATOYOTA"就是镜面回文字符串。 
+
+ 
+注意：数字0与字母O视作同一字符，都用字母O表示。
+
+
+
+
+
+
+
+ 
+
+输入说明 :
+
+ 输入包含多个字符串，每行一个字符串，每个字符串包含1—20个有效字符，保证每个字符串中不会出现非法字符。
+
+ 
+
+输出说明 :
+
+ 
+
+对每个输入的字符串，在第1列输出该字符串并紧跟着输出与下表中标准对应的字符串。每组输出数据后面，必须输出一空行。
+
+
+
+输出字符串                                   标准(含义)
+
+" -- is not a palindrome."         该字符串非回文，也非镜面字符串
+
+" -- is a regular palindrome."        该字符串是回文，但非镜面字符串
+
+" -- is a mirrored string."        该字符串非回文，但是镜面字符串
+
+" -- is a mirrored palindrome."     该字符串是回文，也是镜面字符串
+
+
+
+输入范例 :
+
+3AIAE
+NOTAPALINDROME
+AHA
+输出范例 :
+
+3AIAE -- is a mirrored string.
+
+NOTAPALINDROME -- is not a palindrome.
+
+AHA -- is a mirrored palindrome.
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+bool isreverce(string t)
+{
+    vector<char> b,c;
+    for(auto it=t.begin();it!=t.end();it++)b.push_back(*it);
+    for(auto it=t.rbegin();it!=t.rend();it++)c.push_back(*it);
+    if(b==c)return 1;
+    else return 0;
+}
+bool ismirror(string t)
+{
+    map<char,char> m;
+    m.insert(make_pair('A','A'));
+    m.insert(make_pair('E','3'));
+    m.insert(make_pair('H','H'));
+    m.insert(make_pair('I','I'));
+    m.insert(make_pair('J','L'));
+    m.insert(make_pair('L','J'));
+    m.insert(make_pair('M','M'));
+    m.insert(make_pair('O','O'));
+    m.insert(make_pair('S','2'));
+    m.insert(make_pair('T','T'));
+    m.insert(make_pair('U','U'));
+    m.insert(make_pair('V','V'));
+    m.insert(make_pair('W','W'));
+    m.insert(make_pair('X','X'));
+    m.insert(make_pair('Y','Y'));
+    m.insert(make_pair('Z','5'));
+    m.insert(make_pair('1','1'));
+    m.insert(make_pair('2','S'));
+    m.insert(make_pair('3','E'));
+    m.insert(make_pair('5','Z'));
+    m.insert(make_pair('8','8'));
+    vector<char> a,b;
+    for(auto x:t)if(m.find(x)==m.end())return 0;
+    for(auto x:t)
+        a.push_back(x);
+//        if(m.find(x)==m.end())a.push_back(x);
+//        else a.push_back(m[x]);
+//    for(auto it=t.rbegin();it!=t.rend();it++)
+//        if(m.find(*it)==m.end())b.push_back(*it);
+//        else b.push_back(m[*it]);
+    for(auto it=t.rbegin();it!=t.rend();it++)
+        b.push_back(m[*it]);
+    if(a==b)return 1;
+    else return 0;
+    
+}
+int main()
+{
+    string m;
+    while(cin>>m)
+    {
+    bool reverse,mirror;
+    reverse=isreverce(m);
+    mirror=ismirror(m);
+    if(reverse==1 && mirror==1)cout<<m<<" -- is a mirrored palindrome."<<endl;
+    else if(reverse==0 && mirror ==0)cout<<m<<" -- is not a palindrome."<<endl;
+    else if(reverse==1 && mirror ==0)cout<<m<<" -- is a regular palindrome."<<endl;
+    else cout<<m<<" -- is a mirrored string."<<endl;
+    cout<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,47 @@
+问题描述 :
+
+编写一个程序，将一个2~20以内任意进制数转换成十进制。这些数据由数字0-9，大写字母A-J组成，其中A=10，B=11……J=19。例如16进制数5A转换为十进制数90（90=5*16+10*1）。
+
+输入说明 :
+
+程序需要输入多组数据，每组数据一行，每行有两个数，用空格隔开，分别表示当前进制数和被转换的数据。输入数据十进制数大小不会超过10000，例如：16 5A 表示将16进制数5A转换成10进制数。
+
+
+
+输出说明 :
+
+对于每行输入数据需输出一个结果。每个结果为一个十进制的数。例如：16 5A需输出结果90。
+
+输入范例 :
+
+16 5A
+2 1111111
+
+输出范例 :
+
+90
+127
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int  d;
+    string s;
+    while(cin>>d)
+    {
+        vector<char> v;
+        cin>>s;
+        int k=1;
+        for(int i=0;i<s.size();i++)v.push_back(s[i]);
+        int ans=0;
+        while(!v.empty())
+        {
+            if(isdigit(v.back()))ans+=(v.back()-48)*k;
+            else ans+=(v.back()-55)*k;
+            v.pop_back();
+            k*=d;
+        }
+        cout<<ans<<endl;
+    }
+}

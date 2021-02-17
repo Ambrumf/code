@@ -1,0 +1,61 @@
+问题描述 :
+
+以下程序从键盘读入字符，判断该字符如果是数字字符则输出“digit”，否则输出“error”。请改正错误，使得输出正确。
+
+#include <stdio.h>
+
+int main()
+
+{
+
+     char ch;
+
+     ch = getchar();
+
+     if (0<= ch && ch<= 9)
+
+            printf("digit\n");
+
+     else
+
+            printf("error\n");
+
+   return 0;
+
+}
+
+输入说明 :
+
+输入一个字符，可以为字母、数字字符，也可以为其它字符。
+
+输出说明 :
+
+如果是数字字符，则输出“digit”，否则输出“error”。
+
+输入范例 :
+
+5
+输出范例 :
+
+digit
+#include <stdio.h>
+
+int main()
+
+{
+
+     char ch;
+
+     ch = getchar();
+
+     if ('0'<= ch && ch<= '9')
+
+            printf("digit\n");
+
+     else
+
+            printf("error\n");
+
+   return 0;
+
+}

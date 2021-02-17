@@ -1,0 +1,30 @@
+问题描述 :
+
+　　编写一个程序，输入一个句子，然后统计出这个句子当中不同的单词个数。例如：对于句子“one little two little three little boys”，总共有5个不同的单词：one, little, two, three, boys。
+　　说明：（1）输入的句子当中只包含英文字符和空格，单词之间用一个空格隔开；（2）不用考虑单词的大小写，假设输入的都是小写字符；（3）句子长度不超过100个字符。
+
+输入说明 :
+
+输入只有一行，即一个英文句子。
+
+输出说明 :
+
+输出只有一行，是一个整数，表示句子中不同单词的个数。
+
+输入范例 :
+
+one little two little three little boys
+
+输出范例 :
+
+5
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    set<string> m;
+    string t;
+    while(cin>>t)m.insert(t);
+    cout<<m.size();
+    return 0;
+}

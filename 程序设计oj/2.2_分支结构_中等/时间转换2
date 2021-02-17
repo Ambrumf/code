@@ -1,0 +1,70 @@
+问题描述 :
+
+给定一个t，将t秒转化为DD days HH:MM:SS的形式，表示DD天HH小时MM分钟SS秒。
+
+HH,MM,SS均是两位数，如果小于10用0补到两位。
+
+如果大于等于2天，则输出DD days HH:MM:SS，比如 2 days 01:05:12
+
+如果大于等于1天并小于2天，则输出 1 day HH:MM:SS，比如 1 day 01:05:12
+
+如果大于等于1小时并小于1天，则只输出HH:MM:SS，比如 01:05:12
+
+如果大于等于1分钟并小于1小时，则只输出MM:SS，比如 01:00
+
+如果大于等于10秒并小于1分钟，则只输出SS，比如 10
+
+如果小于10秒，则只输出一位，表示秒数，比如 9
+
+输入说明 :
+
+输入一个数t，表示时间的秒数。
+
+0<=t<100*24*60*60。
+
+
+
+输出说明 :
+
+输出格式形如：
+
+86 days 00:02:12
+
+表示86天0小时2分12秒。
+
+其中“days”前后各有一个空格，行尾没空格。
+
+
+
+详细描述见上。
+
+
+
+输入范例 :
+
+8003045
+输出范例 :
+
+92 days 15:04:05
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int t,day,h,m,s;
+    cin >> t;
+    day = t / 86400;
+    h = (t - day * 86400) / 3600;
+    m = (t - day * 86400 - h * 3600) / 60;
+    s = t - day * 86400 - h * 3600 - 60 * m;
+    if (day>=2) cout << setw(2) <<setfill('0')<< day << " days " << setw(2)<< h << ':' << setw(2)<< m << ':' << setw(2)<< s;
+        else if (day>=1) cout << day << " day " << setw(2) <<setfill('0')<< setw(2)<< h << ':' << setw(2)<< m << ':' << setw(2)<< s;
+             else if(h>=1) cout << setw(2) <<setfill('0')<< setw(2)<< h << ':' << setw(2)<< m << ':' << setw(2)<< s;
+                  else if (m>=1) cout << setw(2) <<setfill('0') << setw(2)<< m << ':' << setw(2)<< s;
+                       else if (s>=10) cout << setw(2) <<setfill('0') << s;
+                            else cout << s;
+    return 0;
+}

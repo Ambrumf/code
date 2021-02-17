@@ -1,0 +1,53 @@
+问题描述 :
+
+从键盘上输入一个整数n，之后输入n 个实数，输出这n个实数的平均值，并统计平均值以上(含平均值) 的实数个数。
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组测试数据数据占两行，第一行表示输入数据的个数（大于零，小于等于80），第二行是输入的数据，其中每个数据都是实数。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出文件（通常为启动该程序的终端）输出一个答案。每个答案占一行。说明：计算结果小数点后保留六位。
+
+输入范例 :
+
+9
+12.2   34.0  4.8  23.0  34.9  45.3  18.0  3.0  11.0
+
+输出范例 :
+
+20.688889 4
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+
+    double n,a[100]={0},b,avr=0;
+    int sum=0;
+    while(cin>>n)
+    {
+    for(int i=0; i<n; i++)
+    {
+        cin>>b;
+        a[i]=b;
+        avr+=a[i];
+    }
+    avr/=n;
+    for(int i=0; i<n; i++)
+    {
+        if(a[i]>=avr)sum++;
+    }
+    cout<<fixed<<setprecision(6)<<avr;
+    cout.unsetf(ios::fixed);
+    cout<<' '<<sum<<endl;
+    sum=0;
+    avr=0;
+    }
+    return 0;
+}

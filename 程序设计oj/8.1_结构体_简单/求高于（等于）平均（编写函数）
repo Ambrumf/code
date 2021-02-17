@@ -1,0 +1,122 @@
+问题描述 :
+
+     学生的记录由学号和成绩组成，N名学生的数据在主函数中读入并存到结构体数组s中，请编写函数fun，它的功能是：把高于等于平均分的学生数据放在形参b所指的数组中（按照在形参a数组中的顺序放入b数组中），高于等于平均分的学生人数通过形参传回，平均分通过函数值返回。部分代码如下：
+
+#include <stdio.h>
+
+#define N 6
+
+typedef struct
+
+{   char num[10];
+
+    double s;
+
+} STREC;
+
+double fun(STREC *a,STREC *b,int *n)
+
+{
+
+ 
+
+}
+
+
+int main()
+
+{
+
+  STREC s[N];
+
+  STREC h[N];
+
+int i,n;double ave;
+
+for(i=0; i<N; i++)
+
+scanf("%s%lf", s[i].num, &s[i].s);
+
+ave=fun(s,h,&n);
+
+printf("%d %7.3f\n",n,ave);
+
+for(i=0;i<n;i++)
+
+printf("%s %4.1f\n",h[i].num,h[i].s);
+
+return 0;
+
+}
+
+
+输入说明 :
+
+ 输入信息为N个学生的学号和成绩，学号和成绩之间以空格分隔。
+
+输出说明 :
+
+ 首先输出一行，为高于等于平均分的人数n以及平均分的值，然后是n行，每一行为一个学生的学号及分数。
+
+输入范例 :
+
+GA05  85    GA03  76    GA02  70    GA04  85    GA01  91    GA07  72 
+输出范例 :
+
+3  79.833
+GA05 85.0
+GA04 85.0
+GA01 91.0
+
+#include <stdio.h>
+
+#define N 6
+
+typedef struct
+
+{
+    char num[10];
+
+    double s;
+
+} STREC;
+
+double fun(STREC *a, STREC *b, int *n)
+{
+    double ave=0;
+    int j=0;
+    for(int i=0;i<6;i++)ave += (a+i)->s;
+    ave/=6;
+    for(int i=0;i<6;i++)if((a+i)->s >= ave){
+        *(b+j)=*(a+i);
+        j++;
+    }
+    *n=j;
+        return ave;
+}
+
+int main()
+
+{
+
+    STREC s[N];
+
+    STREC h[N];
+
+    int i, n;
+    double ave;
+
+    for (i = 0; i < N; i++)
+
+        scanf("%s%lf", s[i].num, &s[i].s);
+
+    ave = fun(s, h, &n);
+
+    printf("%d %7.3f\n", n, ave);
+
+    for (i = 0; i < n; i++)
+
+        printf("%s %4.1f\n", h[i].num, h[i].s);
+
+    return 0;
+}

@@ -1,0 +1,67 @@
+问题描述 :
+
+ 编程对字符串中的子串按字典序输出。子串的形成方法为：从原始字符串开始，依次去掉开头字符形成新的子串。
+
+例如，字符串"grain" 的子串如下所示（依次去掉g,r,a,i)：
+
+grain、rain、ain、in、n
+
+按字典序排列为：
+
+ain
+
+grain
+
+in
+
+n
+
+rain
+
+输入说明 :
+
+输入有多行，每行一个字符串，每个字符串的长度大于0小于等于10，字符串中不包含空格。
+
+ 
+
+输出说明 :
+
+ 对每个字符串，按字典序输出所有子串。
+
+行首与行尾不包含多余空格，也不包含多余空行。
+
+输入范例 :
+
+grain
+123cba
+输出范例 :
+
+ain
+grain
+in
+n
+rain
+123cba
+23cba
+3cba
+a
+ba
+cba
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string s;
+    while(cin>>s)
+    {
+        vector<string> v;
+        while(!s.empty()){
+            v.push_back(s);
+            s.erase(s.begin());
+        }
+        sort(v.begin(),v.end());
+        for(auto x:v)cout<<x<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,36 @@
+问题描述 :
+
+编写程序，输入x，输出y，计算公式如下：
+
+y= x2+3x-4   (x<=5)
+
+y= x2-5x+7    (x>5)
+
+输入说明 :
+
+一个整数x
+
+输出说明 :
+
+对应的y
+
+输入范例 :
+
+5
+输出范例 :
+
+36
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+   int x,y;
+   cin>>x;
+   if(x<=5) y = x * x+ 3 * x - 4;
+    else y = x * x - 5 * x +7;
+   cout<<y;
+    return 0;
+}

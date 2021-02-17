@@ -1,0 +1,51 @@
+问题描述 :
+
+给定三根杆A、B、C和大小不同的几个盘子。这些盘子按尺寸递减顺序套在A杆上，最小的在最上面。现在的任务是把这些盘子从A杆移到C杆且保持原来堆放顺序。在实现任务时，每次只能移动一个盘子，且任何时刻不允许大的盘子放在小的盘子上面，B杆可以作为辅助存放杆。求：总共有n个圆盘时，搬动过程中的第m步是从哪个杆到哪个杆。
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据由一行组成，每行输入一个整数表示盘子数n，1≤n≤10，以及步数m，两个数据之间以一个空格分隔。行首和行尾没有多余的空格，两组数据之间也没有多余的空行。
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出设备（通常为启动该程序的终端）依次输出一行对应的答案，该行中输出第m步移动的情况，如第m步是从A移到B，则输出“A--B”（不包括引号）。如果移动过程不存在第m步，则输出“none” （不包括引号）。
+
+两组数据之间无空行，第一组前及最后一组后也无空行。
+
+输入范例 :
+
+2 3
+2 4
+输出范例 :
+
+B--C
+none
+
+#include <bits/stdc++.h>
+using namespace std;
+int m;
+char from,to;
+void fun(int a,char pos,char backup,char des)
+{
+    if(m==0)return;
+    if(a==1) {from=pos;to=des;m--;return;}
+    fun(a-1,pos,des,backup);
+    if(m==0)return;
+    from=pos;
+    to=des;
+    m--;
+    if(m==0)return;
+    fun(a-1,backup,pos,des);
+}
+
+int main()
+{
+    int n;
+    while(cin>>n>>m){
+    if(m<0){cout<<"none"<<endl;continue;}
+    fun(n,'A','B','C');
+    if(m<=0)printf("%c--%c\n",from,to);
+    else cout<<"none"<<endl;
+    }
+    return 0;
+}

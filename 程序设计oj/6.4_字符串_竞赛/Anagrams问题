@@ -1,0 +1,39 @@
+问题描述 :
+
+　　Anagrams指的是具有如下特性的两个单词：在这两个单词当中，每一个英文字母（不区分大小写）所出现的次数都是相同的。例如，“Unclear”和“Nuclear”、“Rimon”和“MinOR”都是Anagrams。编写一个程序，输入两个单词，然后判断一下，这两个单词是否是Anagrams。每一个单词的长度不会超过80个字符，而且是大小写无关的。
+
+输入说明 :
+
+输入有两行，分别为两个单词。
+
+输出说明 :
+
+输出只有一个字母Y或N，分别表示Yes和No。
+
+输入范例 :
+
+aabbcc
+ccbbaa
+
+输出范例 :
+
+Y
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+    int m1[26]={},m2[26]={};
+    string t1,t2;
+    cin>>t1>>t2;
+    for(auto &x:t1)if(x>='a' && x<='z')x-=32;
+    for(auto x:t1)m1[x-65]++;
+    for(auto &x:t2)if(x>='a' && x<='z')x-=32;
+    for(auto x:t2)m2[x-65]++;
+    int flag=0;
+    for(int i=0;i<26;i++)if(m1[i]!=m2[i])flag=1;
+    if(flag)cout<<'N';
+    else cout<<'Y';
+    return 0;
+}

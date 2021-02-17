@@ -1,0 +1,62 @@
+问题描述 :
+
+　　从一个大小为n的整数集中选取一些元素，使得它们的和等于给定的值T。每个元素限选一次，不能一个都不选。
+
+输入说明 :
+
+　　第一行一个正整数n，表示整数集内元素的个数。
+　　第二行n个整数，用空格隔开。
+　　第三行一个整数T，表示要达到的和。
+
+
+
+　　1<=n<=22
+　　T<=maxlongint
+　　集合中任意元素的和都不超过long的范围
+
+输出说明 :
+
+　　输出有若干行，每行输出一组解，即所选取的数字，按照输入中的顺序排列。
+　　若有多组解，优先输出不包含第n个整数的；若都包含或都不包含，优先输出不包含第n-1个整数的，依次类推。
+　　最后一行输出总方案数。
+
+输入范例 :
+
+5
+-7 -3 -2 5 9
+0
+输出范例 :
+
+-3 -2 5 
+-7 -2 9 
+2
+
+#include <bits/stdc++.h>
+using namespace std;
+int a[23], b[23], pos, sum = 0, rh, T,counter=0;
+int n;
+void print(int rh)
+{
+    for (int i = rh; i >= 0; i--)
+        cout << b[i] << ' ';
+    cout << endl;
+}
+void combination(int pos, int rh,int sum)
+{
+    if (pos < 0)
+        return;
+    combination(pos - 1, rh,sum);
+    b[rh] = a[pos];sum+=b[rh];
+    if(sum==T){print(rh);counter++;}
+    combination(pos - 1, rh + 1,sum);
+}
+int main()
+{
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    cin >> T;
+    combination(n - 1,0,0);
+    cout<<counter;
+    return 0;
+}

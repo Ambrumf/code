@@ -1,0 +1,61 @@
+问题描述 :
+
+编写程序，输出n层正方形图案。正方形图案最外层是第一层，每层用的数字和层数相同。
+
+输入说明 :
+
+正方形图案的层数n（小于等于25）。
+
+输出说明 :
+
+2n-1行2n-1列数据，同一行上的数据之间用一个空格分隔。
+
+比如3层图案，最外层都是1，里面一层都是2，最里面一层只有一个数3，所以是5×5的矩形，如下：
+
+1 1 1 1 1
+
+1 2 2 2 1 
+
+1 2 3 2 1 
+
+1 2 2 2 1 
+
+1 1 1 1 1
+
+
+
+输入范例 :
+
+3
+输出范例 :
+
+1 1 1 1 1
+1 2 2 2 1
+1 2 3 2 1
+1 2 2 2 1
+1 1 1 1 1
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int getval(int i,int j,int n)
+{
+    return min(min(i+1,j+1),min(n-i,n-j));
+}
+
+int main()
+{
+    int m,n,product,quotient;
+    int a[25][25];
+    cin>>n;
+    for (int i=0; i<2*n-1; i++)
+    {
+        for(int j=0; j<2*n-1; j++)
+        {
+            {if(j==0)cout<<getval(i,j,2*n-1);
+            else cout<<' '<<getval(i,j,2*n-1);}
+        }
+        cout<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,38 @@
+问题描述 :
+
+给定一个十进制整数，返回其对应的二进制数的位数。例如，输入十进制数9，其对应的二进制数是1001，因此位数是4。
+
+
+
+输入说明 :
+
+输入一个整数，大小在int表示范围内。
+
+
+
+输出说明 :
+
+一个整数
+
+输入范例 :
+
+9
+输出范例 :
+
+4
+
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    int n,x=0;
+    cin>>n;
+    for(int i=0;n!=0;i++)
+    {
+        n=n/2;
+        x=i+1;
+    }
+    cout<<x;
+    return 0;
+}

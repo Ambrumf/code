@@ -1,0 +1,50 @@
+
+问题描述 :
+
+　　Torry从小喜爱数学。一天，老师告诉他，像2、3、5、7……这样的数叫做质数。Torry突然想到一个问题，前10、100、1000、10000……个质数的乘积是多少呢？他把这个问题告诉老师。老师愣住了，一时回答不出来。于是Torry求助于会编程的你，请你算出前n个质数的乘积。不过，考虑到你才接触编程不久，Torry只要你算出这个数模上50000的值。
+
+输入说明 :
+
+　　仅包含一个正整数n，其中n<=100000。
+
+输出说明 :
+
+　　输出一行，即前n个质数的乘积模50000的值。
+
+输入范例 :
+
+3
+输出范例 :
+
+30
+
+#include <bits/stdc++.h>
+# include <stdio.h>
+
+using namespace std;
+
+int main()
+{
+    int a[100000],n,j=1,flag;
+    long long sum=2;
+    cin>>n;
+    a[0]=2;
+    for(int i=3;j<n+1;i++)
+    {
+        flag=0;
+        for(int k=2;k<sqrt(i)+1;k++)
+        {
+            if(i%k==0){flag=1;break;}
+        }
+        if(flag==0){a[j]=i;j++;}
+    }
+    for(int i=1;i<n;i++)
+    {
+        sum*=a[i];
+        sum%=50000;
+    }
+    if(n==0)cout<<0;
+    else cout<<sum;
+    return 0;
+
+}

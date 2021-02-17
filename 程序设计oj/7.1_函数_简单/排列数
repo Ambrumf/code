@@ -1,0 +1,45 @@
+
+问题描述 :
+
+编写程序计算排列数
+
+Pmn =m! / (m-n)!
+
+要求定义函数fact(n)计算n的阶乘。
+
+
+
+main函数中可使用如下形式调用：fact(m)/fact(m-n));
+
+
+输入说明 :
+
+两个数m、n
+
+输出说明 :
+
+Pmn
+
+输入范例 :
+
+3 2
+输出范例 :
+
+6
+
+#include <bits/stdc++.h>
+using namespace std;
+double fact(double n)
+{
+    double sum=1;
+    for(int i=2;i<n+1;i++)sum*=i;
+    return sum;
+}
+
+int main ()
+{
+    double m,n;
+    cin>>m>>n;
+    cout<<(fact(m)/fact(m-n))<<endl;
+    return 0;
+}

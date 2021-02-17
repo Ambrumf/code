@@ -1,0 +1,53 @@
+问题描述 :
+
+输入三个字符后，按各字符的ASCII码从小到大的顺序输出这三个字符。
+
+输入说明 :
+
+输入数据有T组，每组占一行，有三个字符组成，之间无空格。
+
+输出说明 :
+
+对于每组输入数据，输出一行，字符中间用一个空格分开。
+
+输入范例 :
+
+5
+onv
+bni
+thb
+xsz
+etv
+输出范例 :
+
+n o v
+b i n
+b h t
+s x z
+e t v
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int func(char a[])
+{
+    char t;
+    for (int i=0;i<2;i++)
+    for(int j=0;j<2-i;j++)if(a[j]>a[j+1]){t=a[j];a[j]=a[j+1];a[j+1]=t;}
+    return 0;
+}
+
+int main ()
+{
+    char a[4];
+    int T,m,n;
+    cin>>T;
+    for(int i=0;i<T;i++)
+    {
+        cin>>a;
+        func(a);
+        for(int i=0;i<2;i++)cout<<a[i]<<' ';
+        cout<<a[2]<<endl;
+    }
+    return 0;
+}

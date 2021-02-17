@@ -1,0 +1,123 @@
+问题描述 :
+
+　　八皇后问题是在棋盘上放皇后，互相不攻击，求方案。变换一下棋子，还可以有八车问题，八马问题，八兵问题，八王问题，注意别念反。在这道题里，棋子换成车，同时棋盘也得换，确切说，是进行一些改造。比如现在有一张n*n的棋盘，我们在一些格子上抠几个洞，这些洞自然不能放棋子了，会漏下去的。另外，一个车本来能攻击和它的同行同列。现在，你想想，在攻击的过程中如果踩到一个洞，便会自取灭亡。故，车的攻击范围止于洞。
+
+　　此题，给你棋盘的规模n，以及挖洞情况，求放k个车的方案数(k从0到最多可放车数)
+
+输入说明 :
+
+第一行一个整数n表示棋盘大小
+
+接下来n行，每行n个用空格隔开的数字0或1，0的形状表示洞，1表示没有洞
+
+
+
+数据规模和约定
+
+　　n<=8
+
+输出说明 :
+
+若干行，第i行表示放i个车的方案数
+
+输入范例 :
+
+3
+1 0 1
+1 1 1
+1 0 1
+输出范例 :
+
+7
+12
+4
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int n, m[8][8], take[8], ans[16] = {}, counter = 0;
+bool isvalid(int a, int b)
+{
+    int flag = 0;
+    for (int i = a; i++;)
+    {
+        if (i < 0 || i == n || m[i][b] == 0)
+            break;
+        if (m[i][b] == 2)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    for (int i = a; i--;)
+    {
+        if (i < 0 || i == n || m[i][b] == 0)
+            break;
+        if (m[i][b] == 2)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    for (int j = b; j++;)
+    {
+        if (j < 0 || j == n || m[a][j] == 0)
+            break;
+        if (m[a][j] == 2)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    for (int j = b; j--;)
+    {
+        if (j < 0 || j == n || m[a][j] == 0)
+            break;
+        if (m[a][j] == 2)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (flag)
+        return 0;
+    return 1;
+}
+void fun(int a, int b, int num)
+{
+    if (b == n)
+        return;
+    if (m[a][b] == 1 && isvalid(a, b))
+    {
+        m[a][b] = 2;
+        counter++;
+        if (counter == num)
+        {
+            m[a][b] = 1;
+            counter--;
+            ans[num]++;
+            return;
+        }
+        for (int i = a + 1; i < n; i++)
+            fun(i, b, num);
+        for (int i = 0; i < n; i++)
+            for (int j = b + 1; j < n; j++)
+                fun(i, j, num);
+        m[a][b] = 1;
+        counter--;
+    }
+}
+int main()
+{
+    cin >> n;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            cin >> m[i][j];
+    for (int i = 1; i <=15; i++)
+        for (int j = 0; j < n; j++)
+            for (int k = 0; k < n; k++)
+                fun(j, k, i);
+    for (int i = 1; i <= 15; i++)
+        if(ans[i]!=0)cout << ans[i] << endl;
+    return 0;
+}

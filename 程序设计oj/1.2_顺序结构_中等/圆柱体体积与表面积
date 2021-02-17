@@ -1,0 +1,46 @@
+圆柱体体积与表面积
+时间限制: 1S类别: 顺序结构->中等
+
+晚于: 2020-10-24 23:55:00后提交分数乘系数50%
+
+截止日期: 2020-10-27 23:55:00
+
+问题描述 :
+
+编写程序：输入圆柱的半径和高，计算并输出圆柱体的体积和表面积。
+Pi=3.14
+
+
+输入说明 :
+
+输入包含两个浮点数，分别对应半径和高。
+
+
+输出说明 :
+
+输出两个浮点数，空格隔开，圆柱体的体积和表面积，保留3位小数。
+
+
+输入范例 :
+
+1.5 3
+输出范例 :
+
+21.195 42.390
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    double rad,h,V,S;
+    const double PI=3.14;
+
+    cin>>rad>>h;
+    V=PI*rad*rad*h;
+    S=2*PI*rad*rad+2*PI*rad*h;
+    cout<<fixed<<setprecision(3)<<V<<' '<<S;
+    return 0;
+}

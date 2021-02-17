@@ -1,0 +1,71 @@
+问题描述 :
+
+请跟据一个不小于0，且不大于9的整数，给出它的英文名。各个整数的英文名如下 
+
+0 Zero 
+
+ 1 One 
+
+ 2 Two 
+
+ 3 Three 
+
+ 4 Four 
+
+ 5 Five 
+
+ 6 Six 
+
+ 7 Seven 
+
+ 8 Eight 
+
+ 9 Nine
+
+输入说明 :
+
+你的程序需要从标准输入设备（通常为键盘）中读入多组测试数据。每组输入数据占一行，其中只包含一个整数n（0 ≤ n ≤ 9）。在行首和行尾没有多余的空格；所有数据前后没有多余的空行；两组数据之间没有多余的空行。 
+
+输出说明 :
+
+对每组测试数据，你的程序需要向标准输出设备（通常为启动该程序的文本终端，例如你在Windows中启动该程序所用的命令行终端）依次输出一组对应的答案。每组答案占一行，其中只包含一个字符串，即题问描述中n对应的英文名称，首字母大写，其余字母小写。在行首和行尾不要输出多余的空格；在所有数据的前后不要输出多余的空行；在两组数据之间不要输出多余的空行。
+
+输入范例 :
+
+0
+3
+输出范例 :
+
+Zero
+Three
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int b;
+    while(cin>>b)
+    {
+        switch (b)
+        {
+        case 0: cout<<"Zero"<<endl;break;
+          case 1: cout<<"One"<<endl;break;
+        case 2: cout<<"Two"<<endl;break;
+        case 3: cout<<"Three"<<endl;break;
+
+        case 5: cout<<"Five"<<endl;break;
+        case 6: cout<<"Six"<<endl;break;
+        case 7: cout<<"Seven"<<endl;break;
+        case 4: cout<<"Four"<<endl;break;
+        case 8: cout<<"Eight"<<endl;break;
+        case 9: cout<<"Nine"<<endl;break;
+        default : ;
+        }
+        if (b==-1) break;
+    }
+
+    return 0;
+}

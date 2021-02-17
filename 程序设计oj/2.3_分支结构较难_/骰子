@@ -1,0 +1,45 @@
+问题描述 :
+
+小A和小B比谁掷的骰子点数大。
+
+输入说明 :
+
+输入数据首先包含一个正整数T(T<=8)，后面有T个测试实例，每个测试实例包括两个整数a和b(1<=a,b<=6)，分别代表A和B的点数。
+
+
+
+输出说明 :
+
+如果A的点数比B大，输出”win”，如果A点数小,输出”lose”，如果点数相同则输出”same”。
+
+输入范例 :
+
+2
+1 1
+2 5
+输出范例 :
+
+same
+lose
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int num,a,b;
+    cin>>num;
+    for (int i=0;i<num;i++)
+    {
+        cin>>a>>b;
+        if(a>b) cout<<"win"<<endl;
+        if(a<b) cout<<"lose"<<endl;
+        if(a==b) cout<<"same"<<endl;
+
+    }
+
+
+    return 0;
+}

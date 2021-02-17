@@ -1,0 +1,114 @@
+问题描述 :
+
+输入成绩等级A或a、B或b、C或c、D或d、E或e，要求输出该成绩对应的分数段。A和a对应90~100，B和b对应80～89，C和c对应70～79，D和d对应60～69，E和e对应60分以下。说明：要求修改以下程序，并且，只允许在该程序的switch语句之前增加语句，而不得修改swtich-case里的内容。
+
+#include <stdio.h>
+
+int main()
+
+{
+
+       char grade;
+
+     scanf("%c", &grade);
+
+     switch(grade)
+
+     {
+
+            case 'A':
+
+                   printf("90-100\n");break;
+
+            case 'B':
+
+                   printf("80-89\n");break;
+
+            case 'C':
+
+                   printf("70-79\n");break;
+
+            case 'D':
+
+                   printf("60-69\n");break;
+
+            case 'E':
+
+                   printf("<60\n");break;
+
+            default:
+
+                   printf("input error\n");
+
+     }
+
+     return 0;
+
+}
+
+输入说明 :
+
+输入以下字母之一：A或a、B或b、C或c、D或d、E或e
+
+输出说明 :
+
+如果输入以上字母，输出相应分数段。如果输入其它字符，则输出“input error”。
+
+输入范例 :
+
+b
+输出范例 :
+
+80-89
+
+#include <stdio.h>
+
+int main()
+
+{
+
+       char grade;
+
+     scanf("%c", &grade);
+     switch(grade)
+     {
+         case 'a' :grade = 'A';break;
+         case 'b' :grade = 'B';break;
+         case 'c' :grade = 'C';break;
+         case 'd' :grade = 'D';break;
+         case 'e' :grade = 'E';break;
+     }
+
+     switch(grade)
+
+     {
+
+            case 'A':
+
+                   printf("90-100\n");break;
+
+            case 'B':
+
+                   printf("80-89\n");break;
+
+            case 'C':
+
+                   printf("70-79\n");break;
+
+            case 'D':
+
+                   printf("60-69\n");break;
+
+            case 'E':
+
+                   printf("<60\n");break;
+
+            default:
+
+                   printf("input error\n");
+
+     }
+
+     return 0;
+
+}

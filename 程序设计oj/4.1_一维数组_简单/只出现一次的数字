@@ -1,0 +1,54 @@
+问题描述 :
+
+给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。
+
+输入说明 :
+
+所写的程序要求从标准输入设备中读入测试数据作为程序的输入数据。标准输入设备中有多组测试数据，每组测试数据占两行。第一行输入数据个数n，n大于等于1并且不超过100；第二行输入包含n个数字，除一个数字外，其余数字均出现两次，每个数字大小不超出int的范围。
+
+输出说明 :
+
+ 输出唯一出现一次的数字。注意：每组运算结果单独形成一行数据，每组测试数据与其后一组测试数据之间没有空行，第一组测试数据前面没有任何空行。
+
+输入范例 :
+
+3
+2 2 1
+5
+4 1 2 1 2
+输出范例 :
+
+1
+4
+
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <cstring>
+#include <stdio.h>
+using namespace std;
+int main()
+{
+    int a[100],b,n,flag,t;
+    while(cin>>n)
+    {
+        t=0;
+        for(int i=0; i<n; i++)
+        {
+            cin>>b;
+            a[i]=b;
+        }
+        for(int i=0; i<n; i++)
+        {
+            flag=0;
+            for(int k=0; k<n; k++)
+            {
+                if(a[k]==a[i] && k!=i)flag=1;
+            }
+            if(!flag)t=i;
+        }
+        cout<<a[t]<<endl;
+
+    }
+     return 0;
+}

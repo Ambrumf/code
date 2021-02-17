@@ -1,0 +1,85 @@
+问题描述 :
+
+妈妈每天都要出去买菜，但是回来后，兜里的钱也懒得数一数，到底花了多少钱真是一笔糊涂帐。现在好了，作为好儿子（女儿）的你可以给她用程序算一下了，呵呵。
+
+
+
+输入说明 :
+
+输入含有一些数据组，第一行第一个数是测试组数，第二行第一个数据是菜种数，每组数据包括菜种（字串），数量（计量单位不论，一律为double型数）和单价（double型数，表示人民币元数），因此，每组数据的菜价就是数量乘上单价啊。菜种、数量和单价之间都有空格隔开的。
+
+注意样例输入应是如下：
+
+1
+
+3
+
+青菜 1  2
+
+罗卜 2  1.5
+
+鸡腿 2  4.2
+
+
+
+输出说明 :
+
+支付菜价的时候，由于最小支付单位是角，所以总是在支付的时候采用四舍五入的方法把分头去掉。所以，请输出一个精度为角的菜价总量。
+
+ 
+
+
+
+输入范例 :
+
+2
+3
+青菜 2  2.53
+罗卜 3  1.55
+鸡腿 3  4.25
+4
+青菜 1.5  2.53
+罗卜 2  1.55
+鸡腿 3.5  4.25
+虾 2 12
+输出范例 :
+
+22.5
+45.8
+
+#include<iostream>
+#include<cstdio>
+#include<iomanip>
+#include<cmath>
+#include<locale.h>
+using namespace std;
+
+int main ()
+{
+    setlocale(LC_CTYPE, "chs");
+    wchar_t c;
+    double T,n;
+    int tmp;
+    double a,b,sum=0;
+    cin>>T;
+    for(int j=0;j<T;j++)
+    {
+        cin>>n;
+        cin.get();
+        for(int i=0;i<n;i++)//计算单个菜品菜价
+        {
+            c=cin.get();
+            while(c!=' ')
+            {
+                c=cin.get();
+            }
+            cin>>a>>b;
+            sum+=a*b;
+        }
+        tmp=(sum+0.05)*10;
+        sum=tmp/10.0;
+        cout<<fixed<<setprecision(1)<<sum<<endl;
+        sum=0;
+    }
+    return 0;
+}

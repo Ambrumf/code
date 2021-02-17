@@ -1,0 +1,33 @@
+问题描述 :
+
+从键盘输入三个学生的数学考试成绩，计算它们的平均分，保留两位小数。
+
+输入说明 :
+
+三个整数，数学成绩。
+
+输出说明 :
+
+平均分，保留2位小数。
+
+输入范例 :
+
+80 90 70
+输出范例 :
+
+80.00
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int a,b,c;
+    double result;
+    cin>>a>>b>>c;
+    result=(a+b+c)/3.0;
+    cout<<fixed<<setprecision(2)<<result;
+    return 0;
+}

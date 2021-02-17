@@ -1,0 +1,55 @@
+问题描述 :
+
+　　有n个人排队到r个水龙头去打水，他们装满水桶的时间t1、t2………..tn为整数且各不相等，应如何安排他们的打水顺序才能使他们总共花费的时间最少？
+
+输入说明 :
+
+　　第一行n，r (n<=500,r<=75)
+　　第二行为n个人打水所用的时间Ti (Ti<=100)；
+
+输出说明 :
+
+　　最少的花费时间
+
+输入范例 :
+
+3 2
+1 2 3
+输出范例 :
+
+7
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+    deque<int> d,room;
+    int n,r,sum=0;
+    cin>>n>>r;
+    while(n--)
+    {
+        int t;
+        cin>>t;
+        d.push_back(t);
+    }
+    sort(d.begin(),d.end());
+    while(!d.empty())
+    {
+        if(room.size()<r)
+        {
+            room.push_back(d.front());
+            sum+=d.front();
+            d.pop_front();
+        }
+        else {
+            sort(room.begin(),room.end());
+            room.front()+=d.front();
+            sum+=room.front();
+            d.pop_front();
+        }
+    }
+    cout<<sum;
+    return 0;
+}

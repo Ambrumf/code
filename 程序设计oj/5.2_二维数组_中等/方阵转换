@@ -1,0 +1,137 @@
+问题描述 :
+
+一块N x N（1=<N<=10）正方形的黑白瓦片的图案要被转换成新的正方形图案。
+
+写一个程序来找出将原始图案按照以下列转换方法转换成新图案的最小方式：
+
+#1：转90度：图案按顺时针转90度。
+
+#2：转180度：图案按顺时针转180度。
+
+#3：转270度：图案按顺时针转270度。
+
+#4：反射：图案在水平方向翻转（形成原图案的镜像）。
+
+#5：组合：图案在水平方向翻转，然后按照#1-#3之一转换。
+
+#6：不改变：原图案不改变。
+
+#7：无效转换：无法用以上方法得到新图案。
+
+如果有多种可用的转换方法，请选择序号最小的那个。
+
+比如：
+
+转换前：
+
+ @-@
+ ---
+ @@-
+
+转换后：
+ @-@
+ @--
+ --@
+
+这种转换采取#1（按顺时针转90度）即可。
+
+注意：图案中的字符“@”和“-”在转90度后，还是“@”和“-”。不要认为“-”转90度后变成“|”。
+
+
+
+输入说明 :
+
+第一行： 单独的一个整数N。
+
+第二行到第N+1行： N行,每行N个字符（不是'@'就是'-'）；这是转换前的正方形。
+
+第N+2行到第2*N+1行： N行,每行N个字符（不是'@'就是'-'）；这是转换后的正方形。
+
+输出说明 :
+
+单独的一行包括1到7之间的一个数字（在上文已描述）表明需要将转换前的正方形变为转换后的正方形的转换方法。
+
+输入范例 :
+
+3
+ --@
+ --@
+ ---
+ @@-
+ ---
+ ---
+输出范例 :
+
+3
+
+#include <bits/stdc++.h>
+using namespace std;
+char srcc[11][11]={0},tarc[11][11]={0};
+bool comparec(char c1[][11],char c2[][11],int n);
+bool reverse1(char c[][11],int n);
+bool reverse2(char c[][11],int n);
+bool reverse3(char c[][11],int n);
+bool reverse4(char c[][11],int n);
+bool reverse5(char c[][11],int n);
+
+int main()
+{
+    int n;
+    cin>>n;
+    for(int i=0;i<n;i++)cin>>srcc[i];
+    for(int i=0;i<n;i++)cin>>tarc[i];
+    if(reverse1(srcc,n))cout<<1;
+        else if(reverse2(srcc,n))cout<<2;
+            else if(reverse3(srcc,n))cout<<3;
+                else if(reverse4(srcc,n))cout<<4;
+                    else if(reverse5(srcc,n))cout<<5;
+                        else if(comparec(srcc,tarc,n))cout<<6;
+                            else cout<<7;
+    return 0;
+}
+bool comparec(char c1[][11],char c2[][11],int n)
+{
+    int flag=1;
+    for(int i=0;i<n;i++)
+        if(strcmp(c1[i],c2[i]))flag=0;
+    if(flag)return 1;
+    return 0;
+
+}
+bool reverse3(char c[][11],int n)
+{
+    char rc[11][11]={0};
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)rc[n-1-j][i]=c[i][j];
+    return comparec(rc,tarc,n);
+}
+bool reverse2(char c[][11],int n)
+{
+    char rc[11][11]={0};
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)rc[n-1-i][n-1-j]=c[i][j];
+    return comparec(rc,tarc,n);
+}
+bool reverse1(char c[][11],int n)
+{
+    char rc[11][11]={0};
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)rc[j][n-1-i]=c[i][j];
+    return comparec(rc,tarc,n);
+}
+bool reverse4(char c[][11],int n)
+{
+    char rc[11][11]={0};
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)rc[i][n-1-j]=c[i][j];
+    return comparec(rc,tarc,n);
+}
+bool reverse5(char c[][11],int n)
+{
+    char rc[11][11]={0};
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)rc[i][n-1-j]=c[i][j];
+    if(reverse1(rc,n) || reverse2(rc,n) || reverse3(rc,n) )return 1;
+    return 0;
+}
+

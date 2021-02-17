@@ -1,0 +1,56 @@
+问题描述 :
+
+求1~n之间所有素数的和
+
+输入说明 :
+
+第一行，输入N
+
+以下N行，每行一个数字n(N<100,n<1000)
+
+
+
+输出说明 :
+
+N行，每行为1~n(包括n)之间素数的和
+
+输入范例 :
+
+3
+3
+10
+11
+输出范例 :
+
+5
+17
+28
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main()
+{
+    int N,n,sum,flag;
+    sum=0;
+    cin>>N;
+    for(int k=0; k<N; k++)
+    {
+        cin>>n;
+        if (n==1) ;
+        else
+        for(int i=2; i<=n; i++)
+        {
+            for(int j=2; j<i; j++)
+                {
+                    if (i%j==0) flag=1;
+                }
+            if (flag!=1) sum+=i;
+            flag=0;
+        }
+        cout<<sum<<endl;
+
+        sum=0;
+    }
+    return 0;
+}

@@ -1,0 +1,50 @@
+问题描述 :
+
+　　将一个正整数N(1<N<32768)分解质因数。例如，输入90，打印出90=2*3*3*5。
+
+输入说明 :
+
+输入一个正整数
+
+输出说明 :
+
+按照范例输出。
+
+其中的质因数的输出顺序按照从小到大的顺序。
+
+如果输入的整数本身是质数，则输出形式为：
+
+3=3
+
+输入范例 :
+
+66
+输出范例 :
+
+66=2*3*11
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int n,i,N;
+    int flag=0;
+    cin>>n;
+    N=n;
+    cout<<n<<'=';
+    for(i=2;i<=N;)
+    {
+        if(n%i==0)
+        {
+            n=n/i;
+            if(flag)cout<<'*'<<i;
+            else cout<<i;
+            flag=1;
+        }
+        else i++;
+    }
+    return 0;
+}

@@ -1,0 +1,79 @@
+问题描述 :
+
+旋转句子，要求把输入的句子按顺时针旋转90度。即输入时的句子是从左至右和自上而下的显示方式，输出时变成从上到下和从右到左的显示方式。换句话说，就是输入的最后一句输出在最左边的列，输入的第一句输出在最右边的列。
+
+输入说明 :
+
+输入时最多100个句子（1句即一行），每句不超过100个字符。合法字符包括：换行符、空格、任何标点符、数字、小写和大写英文字母。
+
+注意：一个句子可能不包含任何字符，即空行。
+
+输出说明 :
+
+按顺时针旋转90度后的那些句子。
+
+注意：如果输入了n个句子，则输出就有n列，输出的最下面一行也有n列。可参见输出范例，每一行都有4个字符，最下面一行的第1、3、4个字符都是空格。
+
+输入范例 :
+
+Rene Decartes once said,
+
+"I think, therefore I am."
+Sample Input
+输出范例 :
+
+S" R
+aI e
+m  n
+pt e
+lh  
+ei D
+ n e
+Ik c
+n, a
+p  r
+ut t
+th e
+ e s
+ r  
+ e o
+ f n
+ o c
+ r e
+ e  
+   s
+ I a
+   i
+ a d
+ m ,
+ .  
+ "  
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n=0/*line*/,k,Max=0/*max rol*/,t=0;
+    char a[101][101]= {0},s[101],b[101][101]= {0},c;
+    while(cin.getline(s,101))
+    {
+        strcpy(a[n],s);
+        n++;
+    }
+    for(int i=0; i<n; i++)
+    {
+        k=strlen(a[i]);
+        if(k>Max)Max=k;
+        for(int j=0; j<k; j++)b[j][n-1-i]=a[i][j];
+    }
+    for(int i=0; i<Max; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(b[i][j]==0)cout<<' ';
+            else cout<<b[i][j];
+        }
+        cout<<endl;
+    }
+    return 0;
+}

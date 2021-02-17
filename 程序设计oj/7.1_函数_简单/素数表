@@ -1,0 +1,46 @@
+问题描述 :
+
+从键盘输入m,n
+
+在屏幕上按每行10个的格式输出m~n之间的全部素数。
+
+请用函数判断一个数是否素数。
+
+输入说明 :
+
+两个整数m n
+
+输出说明 :
+
+[m,n]之间(包含m和n)的素数，每行10个，每个数后跟一个空格。
+
+输入范例 :
+
+2 33
+输出范例 :
+
+2 3 5 7 11 13 17 19 23 29 
+31 
+#include <bits/stdc++.h>
+using namespace std;
+int t=0;
+void getfac(int n)
+{
+    if (n==1)return;
+    for (int i=2;i<n;i++)if(n%i==0)return;
+    t++;
+    cout<<n<<' ';
+    if (t%10==0)cout<<endl;
+}
+
+int main ()
+{
+    int m,n;
+    cin>>m>>n;
+    for (int i=m;i<n+1;i++)
+    {
+        getfac(i);
+    }
+    return 0;
+
+}

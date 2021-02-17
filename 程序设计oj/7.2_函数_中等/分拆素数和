@@ -1,0 +1,75 @@
+问题描述 :
+
+把一个偶数拆成两个不同素数的和，有几种拆法呢？
+
+说明：
+
+比如10，可以拆成3+7和5+5以及7+3，
+
+但是3+7与7+3相同，只算一种，5+5由于两个素数相同，不计算在内。
+
+因此，10的拆法只有一种。
+
+输入说明 :
+
+首先输入一个T（不超过500），然后输入T个正的偶数，其值不会超过10000。
+
+输出说明 :
+
+对应每个偶数，输出其拆成不同素数的个数，每个结果占一行。
+
+输入范例 :
+
+4
+4
+6
+8
+10
+
+输出范例 :
+
+0
+0
+1
+1
+
+#include <bits/stdc++.h>
+using namespace std;
+const int MAX = 1000001;
+const int fac = 1001;
+int a[MAX] = {0};
+double b[MAX];
+bool isfact(int x)
+{
+    for(int i=0;i<2000;i++)if(b[i]==x)return 1;
+    return 0;
+}
+int getsum(int  n)
+{
+    int sum = 0;
+    for (int i = 0;i<MAX;i++)
+    {
+        if(b[i]>=n-b[i])break;
+        if(isfact(n-b[i]))sum++;
+    }
+    return sum;
+}
+int main()
+{
+    for (int i = 2; i < MAX; i++)
+        a[i] = i;
+    for (int i = 2; i <= fac; i++)
+        if (a[i] != 0)
+            for (int j = i + i; j < MAX; j+=i)a[j]=0;
+    int j=0;
+    for(int i=0;i<MAX;i++)if(a[i]!=0){b[j]=a[i];j++;}
+    int T;
+    scanf("%d",&T);
+    while (T--)
+    {
+        int n;
+        scanf("%d",&n);
+        cout<<getsum(n)<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,66 @@
+问题描述 :
+
+孪生素数就是指相差2的素数对，例如3和5，5和7，11和13…。这个猜想正式由希尔伯特在1900年国际数学家大会的报告上第8个问题中提出，可以这样描述：存在无穷多个素数p，使得p + 2是素数。素数对（p, p + 2）称为孪生素数。
+
+现在给定任何正整数 N (< 10 ^ 5), 请你计算不大于 N 的孪生素数的对数。
+
+输入说明 :
+
+你的程序必须从标准输入中读取测试用例。输入文件由几组测试用例组成。每组测试用例占一行, 其中包含一个整数 N。当输入的 N为负数表示结束输入。
+
+输出说明 :
+
+对于每组测试数据，输出一行，包括一个整数，表示不大于 N 的孪生素数的对数
+
+输入范例 :
+
+5
+7
+13
+8 
+15
+-16
+输出范例 :
+
+1
+2
+3
+2
+3
+
+#include <bits/stdc++.h>
+# include <stdio.h>
+
+using namespace std;
+bool judgefac(int x)
+{
+    if (x==1)return false;
+    if (x==2)return true;
+    int flag=0;
+    for(int k=2; k<sqrt(x)+1; k++)
+    {
+        if(x%k==0)
+        {
+            flag=1;
+            break;
+        }
+    }
+    if(flag==0)return true;
+    else return false;
+}
+
+int main()
+{
+    int x,j;
+    while(cin>>x)
+    {
+        if(x<0) break;
+        j=0;
+        for(int i=1;  i<x-1; i++)
+        {
+        if(judgefac(i) && judgefac(i+2))j++;
+        }
+        cout<<j<<endl;
+    }
+    return 0;
+}

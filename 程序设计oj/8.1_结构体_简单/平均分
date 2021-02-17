@@ -1,0 +1,57 @@
+问题描述 :
+
+从键盘依次输入每个学生的学号、姓名、出生年月、3门课的成绩，计算并打印出每个学生的平均成绩。
+
+要求使用结构体数组。
+
+
+
+输入说明 :
+
+第一行，整数n，表示一共有n个学生。
+
+从第二行开始共n行，每行包含学号，姓名，出生年，出生月，数学，英语，C语言的成绩，用空格分隔，姓名不含空格。
+
+输出说明 :
+
+共n行，每行包含学号，姓名，出生年/月，数学，英语，C语言，平均成绩。
+
+输出浮点数使用“%.0f”，出生年月用“/”分开，数据之间以一个空格分隔。
+
+输入范例 :
+
+2
+901 hulei 1990 8 67 78 89
+902 fangang 1991 7 85 69 76
+输出范例 :
+
+901 hulei 1990/8 67 78 89 78
+902 fangang 1991/7 85 69 76 77
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    struct stu{
+        int num;
+        string name;
+        int year;
+        int mon;
+        int math;
+        int eng;
+        int c;
+        double ave;
+    };
+    int n;
+    vector<stu> v;
+    cin>>n;
+    while(n--){
+        stu temp;
+        cin>>(temp.num)>>(temp.name)>>(temp.year)>>(temp.mon)>>(temp.math)>>(temp.eng)>>(temp.c);
+        temp.ave=((double)temp.math+temp.eng+temp.c)/3;
+        v.push_back(temp);
+    }
+    for(auto x:v)
+    cout<<x.num<<' '<<(x.name)<<' '<<x.year<<'/'<<x.mon<<' '<<x.math<<' '<<x.eng<<' '<<x.c<<' '<<(int)(x.ave+0.5)<<endl;
+    return 0;
+}

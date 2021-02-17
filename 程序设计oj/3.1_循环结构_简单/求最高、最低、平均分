@@ -1,0 +1,43 @@
+问题描述 :
+
+输入N个学生的成绩，打印输出最高分、最低分、以及平均分。
+
+输入说明 :
+
+第一行输入一个整数N(0<N<20)，表示有N个学生。其后N 行每行有一个整数s(0≤s≤100)，表示一个学生的成绩。
+
+输出说明 :
+
+输出结果为一行，包括3个整数，分别为最高分、最低分、平均分（向下取整），以一个空格分隔，在行首和行尾没有多余的空格。
+
+输入范例 :
+
+3
+1
+2
+4
+输出范例 :
+
+4 1 2
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+   int n,mi,ma,av,x,sum;
+   mi=100,ma=0,sum=0;
+   cin>>n;
+   for (int i=0;i<n;i++)
+   {
+       cin>>x;
+       if(x>=ma)ma=x;
+       if(x<=mi)mi=x;
+       sum+=x;
+   }
+   av=sum/n;
+   cout<<ma<<' '<<mi<<' '<<av;
+   return 0;
+}

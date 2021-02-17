@@ -1,0 +1,83 @@
+问题描述 :
+
+给定一个n*n的棋盘，棋盘中有一些位置不能放皇后。现在要向棋盘中放入n个黑皇后和n个白皇后，使任意的两个黑皇后都不在同一行、同一列或同一条对角线上，任意的两个白皇后都不在同一行、同一列或同一条对角线上。
+
+问总共有多少种放法？
+
+n小于等于8。
+
+说明：同一条对角线是指包括两条主对角线的所有对角线，n=5时的棋盘从左上往右下有9条对角线，从右上往左下也有9条对角线。
+
+比如，棋盘为：
+
+1 1 1 1
+
+1 1 1 1
+1 1 1 1
+1 1 1 1
+
+表示一个4*4的棋盘，所有位置都可放皇后。
+
+则可知有2种放法。
+
+
+
+输入说明 :
+
+输入的第一行为一个整数n，表示棋盘的大小。
+接下来n行，每行n个0或1的整数，如果一个整数为1，表示对应的位置可以放皇后，如果一个整数为0，表示对应的位置不可以放皇后。
+
+输出说明 :
+
+输出一个整数，表示总共有多少种放法。
+
+输入范例 :
+
+4
+1 0 1 1
+1 1 1 1
+1 1 1 1
+1 1 1 1
+输出范例 :
+
+0
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+int n,ans=0;
+int m[8][8],takeb[8],takew[8],colb[8]={},colw[8]={},ulinew[15]={},dlinew[15]={},ulineb[15]={},dlineb[15]={};
+void f(int k)
+{
+    if(k==n){ans++;return;}
+    for(int i=0;i<n;i++)if(m[i][k]==1 && colw[i]==0 && ulinew[k+i]==0 && dlinew[n-k+i]==0)
+    {
+        m[i][k]=0;
+        colw[i]=ulinew[k+i]=dlinew[n-k+i]=1;
+        f(k+1);
+        m[i][k]=1;   
+        colw[i]=ulinew[k+i]=dlinew[n-k+i]=0;
+    }
+}
+void fun(int k)
+{
+    if(k==n)f(0);
+    for(int i=0;i<n;i++)if(m[i][k]==1 && colb[i]==0 && ulineb[k+i]==0 && dlineb[n-k+i]==0)
+    {
+        m[i][k]=0;
+        colb[i]=ulineb[k+i]=dlineb[n-k+i]=1;
+        takeb[k]=i;
+        fun(k+1);
+        m[i][k]=1;
+        colb[i]=ulineb[k+i]=dlineb[n-k+i]=0;
+    }
+}
+int main()
+{
+    cin>>n;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<n;j++)cin>>m[i][j];
+    fun(0);
+    cout<<ans;
+    return 0;
+}

@@ -1,0 +1,81 @@
+问题描述 :
+
+输入某班学生某门课的成绩（最多不超过40人），用函数编程统计不及格人数并输出。
+
+部分代码如下：
+
+int main ()
+
+{
+
+   float mark[40];
+
+   int m,n,count;
+
+   cin>>n;
+
+   for (m=0;m<n;m++)
+
+   {
+
+      cin>>mark[m];
+
+   }
+
+    count=tongji(mark, n);
+
+    cout>>count;
+
+     return 0;
+
+}
+
+
+
+输入说明 :
+
+分两行输入，第一行为一个非负整数n，表示该班学生人数。第二行为n个成绩（可为实数），分数之间以一个空格分隔。如果n等于0，则无第二行。
+
+输出说明 :
+
+输出一个整数，表示该班不及格人数。行首与行尾无多余空格。
+
+输入范例 :
+
+2
+59 60
+输出范例 :
+
+1
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int tongji(double mark[],int n)
+{
+    int sum=0;
+    for(int i=0;i<n;i++)if(mark[i]<60)sum++;
+    return sum;
+}
+
+int main ()
+{
+
+   double mark[40];
+
+   int m,n,count;
+
+   cin>>n;
+    if(n==0) {cout<<0;return 0;}
+   for (m=0;m<n;m++)
+
+   {
+
+      cin>>mark[m];
+
+   }
+
+    cout<<tongji(mark, n);
+    return 0;
+
+}

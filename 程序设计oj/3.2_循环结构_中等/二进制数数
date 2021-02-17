@@ -1,0 +1,47 @@
+问题描述 :
+
+　　给定L,R。统计[L,R]区间内的所有数在二进制下包含的“1”的个数之和。
+　　如5的二进制为101，包含2个“1”。
+
+输入说明 :
+
+第一行包含2个数L,R
+
+1<=L<=R<=100000;
+
+输出说明 :
+
+一个数S，表示[L,R]区间内的所有数在二进制下包含的“1”的个数之和。
+
+输入范例 :
+
+2 3
+输出范例 :
+
+3
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+    int ch[22];
+    for (int i=0; i<20; i++) ch[i]=0;
+    int a,b,L,R,x,sum=0;
+    cin>>L>>R;
+    for (x=L; x<=R; ++x)
+    {
+        a=x;
+        for (int k=0; a!=0; k++) //将x转换为二进制数并写入ch[]
+        {
+
+            b=a % 2;
+            a=a / 2;
+            ch[k]=b;
+
+        }
+        for (int j=0; j<20; j++) sum+=ch[j];
+        for (int i=0; i<20; i++) ch[i]=0;
+    }
+    cout<<sum;
+    return 0;
+}

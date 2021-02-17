@@ -1,0 +1,60 @@
+问题描述 :
+
+学生会主席投票选举工作正在举行。本次投票将采用电脑统计选票的方式，当投票选举正式开始后，同学们将排队一 一走到电脑前，投上自己神圣的一票：在电脑前输入一个姓名，然后输入回车表示确认。 
+
+投票结束后显示得票最高的同学姓名，该同学将当选为新一届学生会主席。 
+
+请编程统计投票。
+
+
+
+
+
+输入说明 :
+
+输入包含多行，每行是一个由英文字母组成的字符串，表示一个姓名，首尾以及中间都不包含空格。 
+
+参加投票学生的人数不超过100人，每个学生姓名字符串的长度小于20。
+
+由于学生投票时输入的姓名有大写有小写，你在统计时不区分大小写，即"Liming"和"liming"是同一个人。
+
+输出说明 :
+
+输出为一个字符串——当选为学生会主席的学生姓名以及他的票数，中间用一个空格分隔。
+
+输入保证没有两个人并列票数最高。
+
+输出的英文字母全部用小写。
+
+输入范例 :
+
+limin
+LIMING
+liming
+wangshan
+huyou
+LiMing
+输出范例 :
+
+liming 3
+
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    multiset<string> s;
+    string temp;
+    while (cin >> temp)
+    {
+        for (string::iterator it=temp.begin();it!=temp.end();it++)
+            *it=tolower(*it);
+        s.insert(temp);
+    }
+    int mmax = 0;
+    string name;
+    for (auto x : s)
+        if (s.count(x) > mmax)
+            {mmax = s.count(x);name=x;}
+    cout << name << ' ' << mmax;
+    return 0;
+}

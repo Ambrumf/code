@@ -1,0 +1,99 @@
+问题描述 :
+
+如今, 许多汽车制造商正在开发用电力而不是汽油运行的汽车。这些汽车使用的电池通常非常笨重而且昂贵, 因此设计师在确定这些车辆的电池容量 (因此也决定了其行驶距离或者说行驶范围) 时, 必须做出重要的权衡。你的任务是帮助确定所需的最小行驶范围, 以便汽车可以在某大陆的任何两个城市之间行驶。
+
+某大陆的公路网由不同长度的双向道路连接的城市组成。每个城市都有一个充电站。沿着两个城市之间的路线, 汽车可以走过任意数量的城市, 但每对相邻的城市之间的距离必须不超过汽车的行驶范围。
+
+需要你求出汽车的最小行驶范围应该是多少, 以便在每一对城市之间有一条满足这一约束的路线？
+
+输入说明 :
+
+输入由一系列路网组成。
+
+每个路网的第一行包含两个正整数 n 和 m, 即城市和道路的数量。这些整数中的每一个都不大于一百万。城市的编号从0到 n-1。
+
+从第二行开始的 m 行, 每行都描述一条路。每行包含三个非负整数。前两个整数是由道路连接的两个城市的编号，第三个整数是道路的长度。
+
+最后一行包含0 0，表示输入结束。
+
+输出说明 :
+
+对于每个路网, 输出一行，包含一个整数, 这是汽车的最小行驶范围, 使其能够从每个城市开到其他任何城市。
+
+如果无论汽车的行驶范围如何, 都无法从某个城市开车到其他城市, 则输出一行 "IMPOSSIBLE" 。
+
+输入范例 :
+
+2 2
+0 1 1
+0 1 2
+3 2
+0 1 1
+0 1 2
+3 3
+0 1 3
+1 2 4
+2 1 5
+2 0
+0 0
+输出范例 :
+
+1
+IMPOSSIBLE
+4
+IMPOSSIBLE
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+ll counter, ans;
+void dfs(ll a, ll n, vector<vector<ll>> &map, vector<bool> &isvisit, ll max_len)
+{
+    if (counter == n)
+        {if (max_len < ans)
+            ans = max_len;
+            return;}
+    for (int i = 0; i < n; i++)
+        if (map[a][i] != 0 && isvisit[i] == 0)
+        {
+            if (max_len < map[a][i])
+                max_len = map[a][i];
+            isvisit[i] = 1;
+            counter++;
+            dfs(i, n, map, isvisit, max_len);
+        }
+        isvisit[a]=0;
+        counter--;
+}
+int main()
+{
+    int n, m;
+
+    while (cin >> n >> m)
+    {
+        ll max_len=-1;
+        ans = 1000000000;
+        counter = 0;
+        if (n == 0 && m == 0)
+            break;
+        vector<ll> temp(n, 0);
+        vector<vector<ll>> map(n, temp);
+        vector<bool> isvisit(n, 0);
+        for (ll i = 0; i < m; i++)
+        {
+            ll a, b, c;
+            cin >> a >> b >> c;
+            if (map[a][b] > c || map[a][b]==0)
+            {
+                map[a][b] = c;
+                map[b][a] = c;
+            }
+        }
+        isvisit[0] = 1;
+        counter++;
+        dfs(0, n, map, isvisit,max_len);
+        if(ans==1000000000)cout<<"IMPOSSIBLE"<<endl;
+        else cout<<ans<<endl;
+    }
+    return 0;
+}
