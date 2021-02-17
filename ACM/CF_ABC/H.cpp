@@ -9,7 +9,10 @@ void solve(){
     cin>>t;
     int aa[200005];
     for(int i=0;i<t.size();i++)if(t[i]=='1'){aa[i]=1;aa[i+1]=1;}
-    if(a>b)
+    if(a>b){
+        int l,r;
+        for(int i=0;i<t.size();i++)if(t[i]=='1')
+    }
 }
 int main()
 {

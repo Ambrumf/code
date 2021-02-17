@@ -21,14 +21,9 @@ void solve(){
     int cnt=0;
     for(int i=1;i<=19;i++){
         string t=tob(i);
-        int len=i-t.size();
-        while(t.size()<i){
-            t="0"+t;
-        }
-        int size=t.size();
-        //cout<<t<<endl;
-        if(size>str.size())break;
-        for(int j=0;j<str.size()-size+1;j++)if(str.substr(j,size)==t)cnt++;
+        int zpos=1e9,j,len=i-str.size();
+        if(i>str.size())break;
+        
     }
     cout<<cnt<<endl;
 }
