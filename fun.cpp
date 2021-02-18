@@ -3,6 +3,7 @@ using namespace std;
 typedef long long ll;
 int aa[26][26],vis[26][26],cnt=0,step[2][600],sum[26];
 ll total=1;
+ll fun=1;
 void dfs(int x,int y,int deep){
     if(deep==cnt){for(int k=1;k<=cnt;k++)cout<<"第"<<k<<"步为: ("<<step[0][k-1]<<","<<step[1][k-1]<<")"<<endl;exit(0);}
     for(int j=1;j<=25;j++)if(aa[y][j] && !vis[y][j]){
