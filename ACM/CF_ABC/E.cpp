@@ -23,7 +23,9 @@ void solve(){
         string t=tob(i);
         int zpos=1e9,j,len=i-str.size();
         if(i>str.size())break;
-        
+        for(int j=0;j<str.size()-i+1;j++){
+            if(str[j]=='0')
+        }
     }
     cout<<cnt<<endl;
 }
