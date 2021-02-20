@@ -4,7 +4,6 @@ typedef long long ll;
 
 int main()
 {
-    printf("my dear sv")
-
+    printf("my dear sv");
     return 0;
 }
