@@ -1,39 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-string tob(int x){
-    stack<string> s;
-    string t;
-    while(x){
-        if(x%2==0)s.push("0");
-        else s.push("1");
-        x/=2;
-    }
-    while(!s.empty()){
-        t+=s.top();
-        s.pop();
-    }
-    return t;
-}
 void solve(){
-    string t[20];
-    for(int i=1;i<=19;i++)t[i]=tob(i);
-    int sum=0,cnt=0;
-    string s;
-    cin>>s;
-    for(int i=0;i<s.size();i++){
-        if(s[i]=='0')sum++;
-        else if(s[i]=='1'){
-            for(int j=1;j<=19;j++){
-                int prez=j-t[j].size();
-                if(sum<prez){sum=0;break;}
-                //if(s.size()-i<t[j].size())break;
-                if(s.substr(i,t[j].size())==t[j]){cnt++;cout<<i<<' '<<t[j]<<endl;}
+    int cnt=0;
+    string t;
+    cin>>t;
+    int mpos[200005];
+    for(int i=0;i<t.size();i++){
+        if(t[i]=='1')mpos[i]=i;
+        else mpos[i]=(i==0?-1:mpos[i-1]);
+    }   
+    //for(int i=0;i<t.size();i++)cout<<mpos[i]<<' ';
+    for(int r=0;r<t.size();r++)
+    {
+        int sum=0;
+        for(int l=r;r-l<20 && l>=0;l--){
+            if(t[l]=='1'){
+                sum+=1<<(r-l);
+                if(r-(l==0?-1:mpos[l-1])>=sum)cnt++;
             }
-            sum=0;
         }
     }
     cout<<cnt<<endl;
+        
+        
 }
 int main()
 {
