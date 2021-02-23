@@ -1,14 +1,5 @@
-place=['new york','london','shanghai','wuhan','hebei']
-print(place)
-print(sorted(place))
-print(place)
-print(sorted(place,reverse=True))
-print(place)
-place.reverse()
-print(place)
-place.reverse()
-print(place)
-place.sort()
-print(place)
-place.sort(reverse=True)
-print(place)
+pizza=['a','b','c']
+for x in pizza:
+    print("I like "+x+" pizza")
+    print("I really like " + x + " pizza")
+    

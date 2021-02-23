@@ -5,7 +5,7 @@ typedef long long ll;
 vector<int> v,V;
 map<int,int>m;
 bool check(int x,int mx){
-    int sum=v[x];
+    ll sum=v[x];
     for(int i=0;i<v.size();i++){
         if(v[i]!=v[x])if(sum>=v[i])sum+=m[v[i]];
                     else return 0;
