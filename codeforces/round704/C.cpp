@@ -52,6 +52,12 @@ ab
 7 4
 aabbadc
 aacd
+
+caaabbababbcbabbccbbaacc
+
+abccabbcaa
+
+
 if(mx[b[i+1]-'a']>mn[a[i]-'a'])
         else ans=max(ans,(mn[a[i]-'a'])-mx[b[i+1]-'a'] )
 */
