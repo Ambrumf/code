@@ -1,14 +1,20 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <queue>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <stdio.h>
+#include <cstring>
 using namespace std;
 typedef long long ll;
-#define inf 0x3f3f3f3f;
 
 int main()
 {
     int a,b;
-    while(cin>>a>>b){
-    if(a==b && a==0)break;
-    cout<<a+b<<endl;
+    while(~scanf("%d %d",&a,&b)){
+        printf("%d\n",a+b);
     }
     return 0;
 }

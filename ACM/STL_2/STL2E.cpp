@@ -1,110 +1,78 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <queue>
-#include <algorithm>
-#include <set>
-#include <map>
-#include <stdio.h>
-#include <cstring>
-using namespace std;
-typedef long long ll;
-ll player[1000], card[6];
-int main()
-{
-    ll n, k = 0, dice, now, l, r, mode, cnt, pile,pos;
-    //mode1 win ; mode 0 break;
-    string t;
-    while (cin >> n)
-    {
-        if (!n)
-            break;
-        cnt = mode = pile = now = pos = 0;
-        for (int i = 0; i < n; i++)
-        {
-            player[i] = i+1;
-            card[i] = 3;
-        }
-        cin >> t;
-        dice = min((ll)3, card[now]);
-        while(pos<=t.size()){
-            if(n==1){mode=1;break;}
-            if(!card[now]){
-                now=(now+1)%n;
-                dice=min(3ll,card[now]);
-                if(t.size()-pos<dice)break;
-                continue;
-            }
-            if (!dice)
-            {
-                now = (now + 1) % n;
-                dice = min(3ll, card[now]);
-                if (t.size() -pos< dice )break;
-                continue;
-            }
-            if(pos==t.size())break;
-            if(t[pos]== '.'){pos++;dice--;continue;}
-            else if(t[pos]=='L'){
-                pos++;
-                l = (now + 1) % n;
-                card[now]--;
-                if(card[now]==0)cnt++;
-                card[l]++;
-                if (card[l] == 1)
-                    cnt--;
-                if (cnt == n - 1)
-                {
-                    mode = 1;
-                    break;
-                }
-            }
-            else if (t[pos] == 'R')
-            {
-                pos++;
-                r = (now + n-1) % n ;
-                card[now]--;
-                if(card[now]==0)cnt++;
-                card[r]++;
-                if (card[r] == 1)
-                    cnt--;
-                if (cnt == n - 1)
-                {
-                    mode = 1;
-                    break;
-                }
-            }
-            else if (t[pos] == 'C')
-            {
-                pos++;
-                card[now]--;
-                if(card[now]==0)cnt++;
-                pile++;
-            }
-            dice--;
-        }
-        k++;
-            printf("Game %lld:\n", k);
-            if (mode)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    printf("Player %lld:%lld", player[i], card[i]);
-                    if (card[i])
-                        printf("(W)");
-                    printf("\n");
-                }
-            }
-            else
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    printf("Player %lld:%lld", player[i], card[i]);
-                    if (i == now)
-                        printf("(*)");
-                    printf("\n");
-                }
-            }
-            printf("Center:%lld\n", pile);
-    }
-    return 0;
-}
+// #include <iostream>
+// #include <string>
+// #include <vector>
+// #include <queue>
+// #include <algorithm>
+// #include <set>
+// #include <map>
+// #include <stdio.h>
+// #include <cstring>
+// using namespace std;
+// typedef long long ll;
+
+// int main()
+// {
+//     int n,k=0;
+//     int first=1;
+//     while(cin>>n){
+//         if(n==0)break;
+//         if(!first)printf("\n");
+//         first=0;
+//         vector<int> v(n,3);
+//         string t;
+//         int flag=0;
+//         cin>>t;
+//         int dice,pos=0,now=0,pile=0,cnt=0;
+//         while(pos<t.size()){
+//             dice=min(3,v[now]);
+//             if(t.size()-pos<dice){flag=-1;break;}
+//             if(flag==-1)break;
+//             for(int i=pos;i<pos+dice;i++){
+//                 if(t[i]=='C'){
+//                     v[now]--;
+//                     pile++;
+//                     if(v[now]==0)cnt++;
+//                 }
+//                 else if(t[i]=='L'){
+//                     v[now]--;
+//                     v[(now+1)%n]++;
+//                     if(v[now]==0)cnt++;
+//                     if(v[(now+1)%n]==1)cnt--;
+//                     if(cnt==n-1)now=(now+1)%n;
+//                 }
+//                 else if(t[i]=='R'){
+//                     v[now]--;
+//                     v[(now+n-1)%n]++;
+//                     if(v[now]==0)cnt++;
+//                     if(v[(now+n-1)%n]==1)cnt--;
+//                 }
+//                 if(cnt==n-1){flag=1;break;}
+//             }
+//             if(flag==1)break;
+//             pos+=dice;
+//             now++;
+//             if(now==n)now=0;
+//             while(v[now]==0){
+//                 now++;
+//                 if(now==n)now=0;
+//             }
+//         }
+//         k++;
+//         cout<<"Game "<<k<<":\n";
+//         if(flag==1){
+//             for(int i=0;i<n;i++)if(v[i])now=i;
+//             for(int i=0;i<n;i++){cout<<"Player "<<i+1<<":"<<v[i];
+//             if(i==now)cout<<"(W)";
+//             cout<<endl;
+//             }
+//         }
+//         else {
+//             for(int i=0;i<n;i++){cout<<"Player "<<i+1<<":"<<v[i];
+//             if(i==now)cout<<"(*)";
+//             cout<<endl;
+//             }
+//         }
+//         cout<<"Center:"<<pile<<endl;
+//     }
+//     return 0;
+// }
