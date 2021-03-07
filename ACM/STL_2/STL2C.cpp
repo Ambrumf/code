@@ -1,141 +1,58 @@
 #include <iostream>
-#include <string>
-#include <vector>
-#include <queue>
 #include <algorithm>
-#include <set>
-#include <map>
-#include <stdio.h>
-#include <cstring>
-#include <stack>
-#include <iomanip>
 using namespace std;
 typedef long long ll;
-struct Clock
-{
-    int day, hour, minute;
-    bool operator>(const Clock b) const
-    {
-        if (day > b.day)
-            return 1;
-        else if (hour > b.hour)
-            return 1;
-        else if (minute > b.minute)
-            return 1;
-        return 0;
-    }
-    bool operator<(const Clock b) const
-    {
-        if (day < b.day)
-            return 1;
-        else if (hour < b.hour)
-            return 1;
-        else if (minute < b.minute)
-            return 1;
-        return 0;
-    }
-    bool operator<=(const Clock b) const
-    {
-        if (day <= b.day)
-            return 1;
-        else if (hour <= b.hour)
-            return 1;
-        else if (minute <= b.minute)
-            return 1;
-        return 0;
-    }
-    void addtime(int x)
-    {
-        minute += x;
-        if (minute >= 60)
-        {
-            int up = minute / 60;
-            minute %= 60;
-            hour += up;
-        }
-        if (hour >= 24)
-        {
-            int up = hour / 24;
-            hour %= 24;
-            day += up;
-        }
-    }
-};
+#define inf 0x3f3f3f3f;
 struct cus
 {
-    Clock time;
-    Clock finish;
-    int id, num, res, pos;
+    int id, t, ans, res;
 };
-void showtime(Clock a)
+
+void solve()
 {
-    cout << setw(2) << setfill('0') << a.hour << ":" << setw(2) << setfill('0') << a.minute << endl;
+    int n, t, k, m;
+    cus aa[1001];
+    scanf("%d %d %d %d", &n, &t, &k, &m);
+    for (int i = 0; i < m; i++)
+    {
+        int h, mte, a, b;
+        scanf("%d:%d %d %d", &h, &mte, &aa[i].id, &aa[i].res);
+        aa[i].t = h * 60 + mte;
+        aa[i].ans = -1;
+    }
+    int now = aa[0].t;
+    for (int i = 0; i < m; i++)
+    {
+        if (aa[i].ans != -1)
+            continue;
+        int times = ((aa[i].res + k - 1) / k);
+        int rice = times * k;
+        int tmp = max(aa[i].t, now) + (times - 1) * t;
+        for (int j = i; j < m; j++)
+        {
+            if (aa[j].t > tmp || rice == 0)
+                break;
+            if (aa[j].id == aa[i].id )
+            {
+                int cook = min(rice, aa[j].res);
+                rice -= cook;
+                aa[j].res -= cook;
+            } 
+            if (aa[j].res == 0 && aa[j].ans == -1)
+            aa[j].ans = tmp + t;
+        }
+        now=tmp+t;
+    }
+    for (int i = 0; i < m; i++)
+        printf("%02d:%02d\n", (aa[i].ans / 60) % 24, aa[i].ans % 60);
 }
 int main()
 {
-    freopen("input.in","r",stdin);
-    freopen("output.out","w",stdout);
-    int n, t, k, m;
+    //freopen("data.in", "r", stdin);
+    //freopen("data.out","w",stdout);
     int T;
-    cin >> T;
+    scanf("%d", &T);
     while (T--)
-    {
-        cin >> n >> t >> k >> m; //n: type t: time k: bowl m: cus
-        vector<cus> v;
-        for (int i = 0; i < m; i++)
-        {
-            int hour, minute, id, num;
-            scanf("%d:%d %d %d", &hour, &minute, &id, &num);
-            Clock tmp;
-            cus a;
-            if (v.empty())
-                tmp.day = 0;
-            else
-            {
-                tmp.day = v[i - 1].time.day;
-                if (tmp < v[i - 1].time)
-                    tmp.day++;
-            }
-            a.time = tmp;
-            a.id = id;
-            a.num = num;
-            a.res = num;
-            a.pos = i;
-            v.push_back(a);
-        }
-        int i = 0, pan = k, type;
-        deque<cus> chief;
-        Clock now = v[0].time;
-        while (i != m)
-        {
-            if (chief.empty())
-                while (v[i].time <= now)
-                {
-                    chief.push_back(v[i]);
-                    i++;
-                }
-            while (!chief.empty())
-            {
-                pan = k;
-                while (chief.front().res == 0)
-                {
-                    showtime(now);
-                    chief.pop_front();
-                }
-                type = chief.front().id;
-                for (int i = 0; i < chief.size(); i++)
-                {
-                    if (chief[i].id != type)
-                        break;
-                    if (pan == 0)
-                        break;
-                    int cook = min(chief[i].res, pan);
-                    chief[i].res -= cook;
-                    pan -= cook;
-                }
-                now.addtime(t);
-            }
-        }
-    }
+        {solve();if(T)printf("\n");}
     return 0;
 }

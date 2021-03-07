@@ -1,57 +1,58 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 typedef long long ll;
 #define inf 0x3f3f3f3f;
-struct haa{
-    char c[500];
-    haa(){memset(c,'0',sizeof(c));}
-    int n=0;
-    bool operator==(haa b){
-        if(n==b.n && c==b.c)return 1;
-        return 0;
-    }
-    bool operator>(haa b){
-        if(n>b.n)return 1;
-        for(int i=n;i>=0;i++){
-            if(c[i]>b.c[i])continue;
-            return 0;
-        }
-        return 0;
-    }
-    haa operator-(haa b){
-        for(int i=n-1;i>=0;i--)c[i]=c[i]-b.c[i]+'0';
-        for(int i=n-1;i>=0;i--){
-            if(c[i]!='0')break;
-            n--;
-        }
-        return *this;
-    }
+struct cus
+{
+    int id, t, ans, res;
 };
+
+void solve()
+{
+    int n, t, k, m;
+    cus aa[1001];
+    scanf("%d %d %d %d", &n, &t, &k, &m);
+    for (int i = 0; i < m; i++)
+    {
+        int h, mte, a, b;
+        scanf("%d:%d %d %d", &h, &mte, &aa[i].id, &aa[i].res);
+        aa[i].t = h * 60 + mte;
+        aa[i].ans = -1;
+    }
+    int now = aa[0].t;
+    for (int i = 0; i < m; i++)
+    {
+        if (aa[i].ans != -1)
+            continue;
+        int times = ((aa[i].res + k - 1) / k);
+        int rice = times * k;
+        int tmp = max(aa[i].t, now) + (times - 1) * t;
+        for (int j = i; j < m; j++)
+        {
+            if (aa[j].t > tmp || rice == 0)
+                break;
+            if (aa[j].id == aa[i].id )
+            {
+                int cook = min(rice, aa[j].res);
+                rice -= cook;
+                aa[j].res -= cook;
+            } 
+            if (aa[j].res == 0 && aa[j].ans == -1)
+            aa[j].ans = tmp + t;
+        }
+        now=tmp+t;
+    }
+    for (int i = 0; i < m; i++)
+        printf("%02d:%02d\n", (aa[i].ans / 60) % 24, aa[i].ans % 60);
+}
 int main()
 {
-    string a,b;
-    int T,k=0;
-    cin>>T;
-    while(T--){
-        haa x,y;
-        cin>>a>>b;
-        cout<<"@@"<<endl;
-        x.n=a.size();
-        y.n=b.size();
-        cout<<"!";
-        for(int i=0;i<x.n;i++)x.c[i]=a[x.n-1-i]; 
-        for(int i=0;i<y.n;i++)y.c[i]=b[y.n-1-i];
-        cout<<"1";
-        haa x0=x,y0=y;
-        while(!(x==y)){
-            if(x>y)x=x-y;
-            else y=y-x;
-        }
-        cout<<"2";
-        k++;
-        cout<<"Case: "<<k;
-        if(x==x0 || x==y0)cout<<"divisible"<<endl;
-        else cout<<"not divisible"<<endl;
-    }
+    //freopen("data.in", "r", stdin);
+    //freopen("data.out","w",stdout);
+    int T;
+    scanf("%d", &T);
+    while (T--)
+        {solve();if(T)printf("\n");}
     return 0;
 }
