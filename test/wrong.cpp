@@ -2,26 +2,30 @@
     #include <bits/stdc++.h>
     using namespace std;
     typedef long long ll;
-    int prime[1000000];
+    ll prime[1000000];
     bool isprime[1000006];
-    int k=0,ans;
+    ll k=0,ans;
     ll a,b,tmp;
     void fun(){
-        for(int i=1;i<=k && prime[i]*prime[i]<tmp;i++){
-            int ek=0;
+        for(int i=1;i<=k && prime[i]*prime[i]<=tmp;i++){
+            ll ek=0;
             if(tmp%prime[i]==0){
                 while(tmp%prime[i]==0){
                     tmp/=prime[i];
                     ek++;
                 }
+                //cout<<prime[i]<<' '<<ek<<endl;
             }
             ans*=(1+ek);
-            //cout<<ans<<endl;
+            //cout<<prime[i]<<endl;
         }
+        //cout<<tmp<<endl;
         if(tmp>1)ans*=2;
     }
     int main()
     {
+        //freopen("data.in","r",stdin);
+        //freopen("data.out","w",stdout);
         for(int i=2;i<=1000000;i++){
             if(!isprime[i])prime[++k]=i;
             for(int j=1;j<=k && (ll)prime[j]*i<1000000;j++){
@@ -42,8 +46,9 @@
                 for(int i=1;i<b;i++){
                     if(a%i==0)ans--;
                 }
-                printf("Case %d: %d\n",ca,ans);
+                printf("Case %d: %lld\n",ca,ans);
             }
         }
         return 0;
     }
+//730342634 50
