@@ -1,25 +1,42 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
+#include <iomanip>
+#include <vector>
+#include <string>
 using namespace std;
-typedef long long ll;
-#define inf 0x3f3f3f3f;
 
-void solve(){
-    ll a,b;
-    cin>>a>>b;
-    ll cnt=0;
-    for(ll i=b;i*i<a;i++){
-        if(a%i==0)cnt++;
-    }
-    cout<<cnt<<endl;
-}
 int main()
 {
-    int t;
-    scanf("%d",&t);
-    for(int i=1;i<=t;i++){
-        cout<<"Case "<<i<<": ";
-        solve();
+    int n;
+    cin>>n;
+    while(n--)
+    {
+        cin.get();                                              //*
+        string struser,stroj,temp;
+        struser="";
+        stroj="";
+        getline(cin,temp);
+        while(getline(cin,temp))
+        {
+            if(temp=="")temp="\n";
+            if(temp=="END")break;
+            else struser.append(temp);                          //*
+        }
+        getline(cin,temp);
+        while(getline(cin,temp))
+        {
+            if(temp=="")temp="\n";
+            if(temp=="END")break;
+            else stroj.append(temp);
+        }
+        if (stroj==struser){cout<<"Accepted"<<endl;continue;}
+            else {
+                for(int i=0;i<stroj.size();i++)
+                while(stroj[i] == ' ' || stroj[i] == '\t' || stroj[i] == '\n')stroj.erase(stroj.begin()+i);                       //*
+                for(int i=0;i<struser.size();i++)
+                while(struser[i] == ' ' || struser[i]  == '\t' || struser[i]  == '\n')struser.erase(struser.begin()+i);
+                if(stroj==struser){cout<<"Presentation Error"<<endl;continue;}
+                    else {cout<<"Wrong Answer"<<endl;continue;}
+            }
     }
     return 0;
 }
