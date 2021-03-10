@@ -10,14 +10,12 @@ int main()
     srand((unsigned)time(NULL));
     ull a,b,c,t;
     t=Rand(100,200);
-    cout<<t<<endl;
+    //cout<<t<<endl;
     for(int i=1;i<=t;i++){
-        a=rand()*rand()*rand()*rand();
-        b=rand()*rand()*rand()*rand();
-        c=Rand(1,1000);
+        a=rand();
         if(a<0)a=-a;
-        if(b<0)b=-b;
-        cout<<a<<' '<<b<<' '<<c<<endl;
+        cout<<a<<endl;
     }
+    cout<<0;
     return 0;
 }

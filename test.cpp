@@ -1,25 +1,11 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define inf 0x3f3f3f3f;
 
-void solve(){
-    ll a,b;
-    cin>>a>>b;
-    ll cnt=0;
-    for(ll i=b;i*i<a;i++){
-        if(a%i==0)cnt++;
-    }
-    cout<<cnt<<endl;
-}
 int main()
 {
-    int t;
-    scanf("%d",&t);
-    for(int i=1;i<=t;i++){
-        cout<<"Case "<<i<<": ";
-        solve();
-    }
+    string t="";
+    cout<<(int)t[6];
     return 0;
 }
