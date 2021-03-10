@@ -1,9 +1,9 @@
-#include<bits/stdc++.h> 
+#include<bits/stdc++.h>
 using namespace std;
 int main()
 {
-    freopen("data.in","r",stdin);
-    freopen("wrong.out","w",stdout); 
+   //freopen("data.in","r",stdin);
+   //freopen("wrong.out","w",stdout);
    string a;
    int b=0;
    while(cin>>a)
@@ -33,20 +33,27 @@ int main()
        }
        else
        {
-           if(b+a.length()>80)
+           if(b==0)
            {
-               getchar();
+              cout<<a;
+              b=a.length();
+           }
+           else if(b+a.length()>81)
+           {
                cout<<endl;
-               cout<<a<<" ";
-               b=a.length()+1;
+               cout<<a;
+               b=a.length();
            }
            else
            {
-               cout<<a<<" ";
-               b+=a.length()+1;
+               cout<<" "<<a;
+               b=b+1+a.length();
            }
        }
    }
-   if(b!=0)cout<<endl;
+   if(b!=0)
+   {
+       cout<<endl;
+   }
    return 0;
 }

@@ -5,8 +5,6 @@ typedef long long ll;
 
 int main()
 {
-    string lsname="123";
-    cin>>lsname;
-    cout<<lsname;
+    cout<<sqrt(52.0)+sqrt(34.0)+sqrt(13.0)+sqrt(2.0);
     return 0;
 }
