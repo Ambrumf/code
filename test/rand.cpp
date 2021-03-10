@@ -4,6 +4,13 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 int Rand(int l,int r){return rand()%(r-l+1)+l;}
+void s(){
+    for(int i=1;i<=3;i++){
+        char a='a'+Rand(0,25);
+        cout<<a;
+    }
+    cout<<' ';
+}
 int main()
 {
     freopen("data.in","w",stdout);

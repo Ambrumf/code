@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-Hallo, dies ist eine ziemlich lange Zeile, die in Html aber nicht umgebrochen
-wird.
-Zwei
-
-produzieren zwei Newlines. Es gibt auch noch das tag
---------------------------------------------------------------------------------
-was einen Trenner darstellt. Zwei
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
-produzieren zwei Horizontal Rulers. Achtung mehrere Leerzeichen irritieren Html
-genauso wenig wie mehrere Leerzeilen.
-=======
 No enemy spy
 No enemy spy
 No enemy spy
@@ -263,4 +250,3 @@ No enemy spy
 yrp qkm
 yij snz
 No enemy spy
->>>>>>> c36bf1af4fab62869b88493933972b4a9a5d9cc0
