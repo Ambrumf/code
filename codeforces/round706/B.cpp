@@ -2,43 +2,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
+int aa[100005];
 void solve(){
-    map<ll,ll> m;
-    ll n,k,cnt,mx=-1e9;
-    vector<ll> v;
-    scanf("%lld %lld",&n,&k);
+    map<int,int> m;
+    int n,k,a=-1e9;
+    scanf("%d %d",&n,&k);
     for(int i=0;i<n;i++){
-        ll t;
-        scanf("%lld",&t);
-        mx=max(mx,t);
-        m[t]=1;
+        scanf("%d",&aa[i]);
+        m[aa[i]]=1;
+        a=max(a,aa[i]);
     }
-    ll i=0;
-    while(k--){
-        while(m[i] && m[i+1] && i!=mx)i++;
-        //cout<<i+1<<' '<<mx<<endl;
-        if(i==mx){n+=k+1;break;}
-        ll tmp=(i+1+mx-1)/2+1;
-        //cout<<tmp<<endl;
-        if(m[tmp])break;
-        else {
-            n++;
-            m[tmp]=1;
-            mx=max(mx,tmp);
-        }
-        
+    int i=0;
+    for(i=0;i<n;i++){
+        if(m[i]==0)break;
     }
-    printf("%lld\n",n);
+    if(k==0)printf("%d\n",n);
+    else if(i==n){printf("%d\n",n+k);}
+    else {
+        int b=i;
+        if(m[((a+b)-1)/2+1])printf("%d\n",n);
+        else printf("%d\n",n+1);
+    }
 }
 int main()
 {
+    //freopen("data.in","r",stdin);
+    //freopen("data.out","w",stdout);
     int T;
     scanf("%d",&T);
     while(T--)solve();
     return 0;
 }
-
 /*
 5
 4 1
@@ -51,10 +45,8 @@ int main()
 0 1 2
 3 2
 1 2 3
-outputCopy
-4
-4
-3
-5
-3
 */
+
+//m[i] -> m[aa[i]]
+//i==n
+//k==0
