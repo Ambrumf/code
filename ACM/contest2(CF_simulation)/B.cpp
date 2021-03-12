@@ -1,43 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define inf 0x3f3f3f3f;
 
-struct node{
-    int num;
-    int data;
-};
-bool cmp(node a,node b){
-    return a.data<b.data;
+void solve(){
+    int n;
+    scanf("%d",&n);
+    ll a2=0,a1=0,tmp,cnt=0;
+    for(int i=0;i<n;i++){
+        scanf("%lld",&tmp);
+        if(tmp%3==0)cnt++;
+        if(tmp%3==2)a2++;
+        if(tmp%3==1)a1++;
+    }
+    cnt+=min(a2,a1)+(a1-min(a2,a1))/3+(a2-min(a2,a1))/3;
+    printf("%lld\n",cnt);
 }
 int main()
 {
-    int n;
-    cin>>n;
-    ll ans=1;
-    deque<int> v;
-    vector<node> vv;
-    for(int i=1;i<=n;i++){
-        ll t;
-        cin>>t;
-        v.push_back(t);
-        node tmp;
-        tmp.data=t;
-        tmp.num=i;
-        vv.push_back(tmp);
-    }
-    sort(v.rbegin(),v.rend());
-    v.erase(v.begin());
-    int k=1;
-    while(!v.empty()){
-        ans+=k*v.front()+1;
-        v.pop_front();
-        k++;
-    }
-    cout<<ans<<endl;
-    sort(vv.rbegin(),vv.rend(),cmp);
-    for(int i=0;i<vv.size();i++){
-        cout<<vv[i].num<<' ';
-    }
+    int T;
+    scanf("%d",&T);
+    while(T--)solve();
     return 0;
 }

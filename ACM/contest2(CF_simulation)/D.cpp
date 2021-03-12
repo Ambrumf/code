@@ -1,29 +1,44 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define inf 0x3f3f3f3f;
-ll gcd(ll a,ll b){
-    if(a<b)swap(a,b);
-    return b==0?a:gcd(b,a%b);
+int cnt[3000000]={};
+int prime[2000000]={};
+bool notprime[3000000]={};
+int fun(int x){
+    for(int i=2;i*i<=x;i++){
+        if(x%i==0)return x/i;
+    }
+    return -1;
 }
 int main()
 {
-    ll n,sum=0,mx=-1e9,x;
+    int k=0;
+    vector<int> p,h,ans;
+    for(int i=2;i<=2750131;i++){
+        if(!notprime[i])prime[++k]=i;
+        for(int j=1;j<=k && prime[j]*i<=2750131;j++){
+            notprime[prime[j]*i]=1;
+            if(i%prime[j]==0)break;
+        }
+    }
+    int n;
     cin>>n;
-    vector<ll> v;
-    for(int i=0;i<n;i++){
-        ll t;
-        scanf("%lld",&t);
-        sum+=t;
-        mx=max(mx,t);
-        v.push_back(t);
+    for(int i=1;i<=2*n;i++){
+        int tmp;
+        scanf("%d",&tmp);
+        cnt[tmp]++;
+        if(notprime[tmp])h.push_back(tmp);
+        else p.push_back(tmp);
     }
-    x=mx;
-    ll z=x-v.front();
-    for(int i=0;i<v.size()-1;i++){
-        z=gcd(z,x-v[i+1]);
+    sort(h.rbegin(),h.rend());
+    sort(p.begin(),p.end());
+    for(int i=0;i<h.size();i++){
+        while(cnt[h[i]]){ans.push_back(h[i]);cnt[h[i]]--;cnt[fun(h[i])]--;}
     }
-    ll y=(n*x-sum)/z;
-    cout<<y<<' '<<z;
+    for(int i=0;i<p.size();i++){
+        while(cnt[p[i]]){ans.push_back(p[i]);cnt[p[i]]--;cnt[prime[p[i]]]--;}
+    }
+    for(auto x:ans)printf("%d ",x);
     return 0;
 }

@@ -15,14 +15,19 @@ int main()
 {
     freopen("data.in","w",stdout);
     srand((unsigned)time(NULL));
-    ull a,b,c,t;
-    t=Rand(100,200);
-    //cout<<t<<endl;
+
+    int t=Rand(500,400)*Rand(960,980);
+    cout<<t<<endl;
     for(int i=1;i<=t;i++){
-        a=rand();
-        if(a<0)a=-a;
-        cout<<a<<endl;
+        int a=Rand(1,6);
+        if(a==1)cout<<4;
+        else if(a==2)cout<<8;
+        else if(a==3)cout<<15;
+        else if(a==4)cout<<16;
+        else if(a==5)cout<<23;
+        else cout<<42;
+        //printf("42 ");
+        cout<<' ';
     }
-    cout<<0;
     return 0;
 }

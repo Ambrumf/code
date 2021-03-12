@@ -1,22 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define inf 0x3f3f3f3f;
 
+void solve(){
+    ll n;
+    while(cin>>n){
+        int cnt=0,a=0,b=0,c=0;
+        while(n%2==0){
+            n/=2;
+            a++;
+        }
+        while(n%3==0){
+            n/=3;
+            b++;
+        }
+        while(n%5==0){
+            n/=5;
+            c++;
+        }
+        cnt=a+b*2+c*3;
+        if(n!=1)printf("-1\n");
+        else printf("%d\n",cnt);
+    }
+}
 int main()
 {
-    int n;
-    cin>>n;
-    string t;
-    cin>>t;
-    int cnt=0;
-    for(int i=0;i<n-1;i+=2){
-        if(t[i]==t[i+1]){
-            cnt++;
-            if(t[i]=='a')t[i]='b';
-            else t[i]='a';
-        }
-    }
-    cout<<cnt<<endl<<t;
+    int T;
+    scanf("%d",&T);
+    while(T--)solve();
     return 0;
 }
