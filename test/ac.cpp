@@ -6,8 +6,8 @@ using namespace std;
 
 int main()
 {
-    //freopen("data.in","r",stdin);
-    //freopen("ac.out","w",stdout);
+    freopen("data.in","r",stdin);
+    freopen("ac.out","w",stdout);
     string str;
     int sum=0,flagfront=1;
     while(cin>>str)
