@@ -2,30 +2,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-int aa[500005],d[7]={0,4,8,15,16,23,42};
-int pre[500005][7];
-int main()
-{
+ll mod=20090126;
+ll f[201][201],C[201][201],A[201];
+void calA(){
+    A[1]=A[0]=1;
+    for(ll i=2;i<=200;i++)A[i]=A[i-1]*i%mod;
+}
+void calc(){
+    for(int i=0;i<=200;i++)
+        for(int j=0;j<=i;j++){
+            if(j==0 || j==i)C[i][j]=1;
+            else C[i][j]=(C[i-1][j]+C[i-1][j-1])%mod;
+        }
+}
+void calf(){
+    for(int i=2;i<=200;i++)for(int j=1;j<=i/2;j++)f[i][j]=C[i][2]*C[i-j-1][j-1]%mod;
+}
+void solve(){
     int n;
     cin>>n;
-    for(int i=1;i<=n;i++)scanf("%d",&aa[i]);
-    for(int k=1;k<=6;k++){
-        int s=0;
-        for(int i=1;i<=n;i++){
-            pre[i][k]=pre[i-1][k];
-            if(aa[i]==d[k]){
-            if(k==1)pre[i][1]=++s;
-            else {
-                if(s<pre[i][k-1])pre[i][k]=++s;
-                else pre[i][k]=pre[i][k-1];
-            }   
-            }
-        }
-    }
-    // for(int k=1;k<=6;k++){
-    //   for(int i=1;i<=n;i++)cout<<pre[i][k]<<' ';
-    //    cout<<endl;
-    //}
-    cout<<n-6*pre[n][6];
+    //ll sum=A[n];
+    ll sum=0;
+    for(int i=2;i<=2;i++)for(int j=1;j<=i/2;j++)sum=(sum+(A[n-i+j]*f[i][j])%mod*C[n][i]%mod)%mod;
+    cout<<sum<<endl;
+}
+int main()
+{
+    calA();
+    calc();
+    calf();
+    cout<<C[3][2]<<endl;
+    cout<<f[2][1]<<endl;
+    cout<<f[3][1]<<endl;
+    int T;
+    scanf("%d",&T);
+    while(T--)solve();
     return 0;
 }

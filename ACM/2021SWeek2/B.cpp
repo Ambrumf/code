@@ -2,7 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-ll mod=1000000007;
+ll mod=1e9+7;
 ll aa[2001],vis[2001];
 ll c[2001][2001];
 ll f[2001];
@@ -14,20 +14,18 @@ void calC(){
     }
 }
 ll A(ll n,ll m){
-    if(n==0 || m==0)return 1;
     ll ans=1;
     for(ll i=0;i<m;i++)ans=ans*(n-i)%mod;
-    return ans;
+    return ans; 
 }
 int main()
 {
-    //freopen("data.in","r",stdin);
-    //freopen("data.out","w",stdout);
     calC();
     f[0]=1;
     f[1]=0;
     f[2]=1;
-    for(ll i=3;i<=2000;i++)f[i]=((i-1)*((f[i-1]+f[i-2])%mod))%mod;
+    for(ll i=3;i<=2000;i++)f[i]=( (i-1) * ( (f[i-1]+f[i-2]) % mod ) )%mod;
+
     ll n;
     cin>>n;
     ll a=0,b=0;
@@ -37,8 +35,8 @@ int main()
         else b++;
     }
     ll m=min(a,b),ans=0;
-    for(ll i=0;i<=m;i++)ans=(ans+A(a,i)*A(a,a)%mod*f[b-i]%mod*c[b][i]%mod)%mod;
-    cout<<a<<' '<<b<<endl;
+    for(ll i=0;i<=m;i++)ans=(ans+(ll)A(a,i)*A(a,a)%mod*f[b-i]%mod*c[b][i]%mod)%mod;
+    //cout<<a<<' '<<b<<endl;
     cout<<ans;
     return 0;
 }
