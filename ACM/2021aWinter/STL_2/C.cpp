@@ -37,7 +37,7 @@ void solve()
                 int cook = min(rice, aa[j].res);
                 rice -= cook;
                 aa[j].res -= cook;
-            } 
+            }
             if (aa[j].res == 0 && aa[j].ans == -1)
             aa[j].ans = tmp + t;
         }
