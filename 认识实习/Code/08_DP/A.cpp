@@ -2,26 +2,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-int k=0;
+int k=0,aa[100005],pre[100005],mnpos[100005],s[100005],ans,lpos,rpos;
 void solve(){
     k++;
     int n;
     cin>>n;
-    int aa[100005],pre[100005],mx=-1e9,mn=0,mxpos=0,mnpos=0,ans=-1e9;
-    pre[0]=0;
+    pre[0]=s[0]=0;
+    mnpos[0]=1;
     for(int i=1;i<=n;i++){
         scanf("%d",&aa[i]);
         pre[i]=pre[i-1]+aa[i];
-        if(pre[i]>mx){mx=pre[i];mxpos=i;}
-        if(pre[i]<mn){mn=pre[i];mnpos=i;}
-        ans=max(ans,mx-mn);
+        s[i]=s[i-1];
+        mnpos[i]=mnpos[i-1];
+        if(s[i]>pre[i-1]){s[i]=pre[i-1];mnpos[i]=i;};
     }
-    printf("Case %d:\n%d %d %d\n\n",k,ans,mnpos+1,mxpos);
+    ans=-1e9;
+    for(int i=1;i<=n;i++){
+        if(pre[i]-s[i]>ans){ans=pre[i]-s[i];lpos=mnpos[i];rpos=i;}
+    }
+    printf("Case %d:\n%d %d %d",k,ans,lpos,rpos);
 }
 int main()
 {
+    //freopen("data.in","r",stdin);
+    //freopen("data.out","w",stdout);
     int T;
     scanf("%d",&T);
-    while(T--)solve();
+    while(T--){
+        solve();
+        if(T!=0)cout<<endl<<endl;
+        else cout<<endl;
+    }
     return 0;
 }
